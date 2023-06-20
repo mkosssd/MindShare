@@ -1,0 +1,36 @@
+/* input{
+  width: 25vw;
+} */
+*{
+  color:white;
+  overflow: hidden;
+  
+}
+form{
+  /* border: 1px red solid; */
+  width: 90%;
+  /* text-align: center; */
+  
+  /* margin: auto; */
+}
+button{
+  /* background-color: black; */
+  border: 1px white solid;
+  margin: 1vh;
+  
+  
+}
+button:disabled{
+  border: 1px white solid;
+}
+.divi{
+  font-size: 4vh;
+  
+}
+label{
+  font-size: 1.5vh;
+}
+input{
+  color: black;
+  /* height: 4vh; */
+}

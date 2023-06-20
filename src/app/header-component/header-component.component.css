@@ -1,0 +1,33 @@
+
+.navbar{
+    background-color: #303030;
+    
+}
+.navbar li a{
+    color: white;
+    font-weight: 900;
+}
+.navbar li a:hover{
+    transform: scale(1.1);
+    transition: ease-in 150ms;
+}
+.navbar li a:active{
+    transform: scale(0.9);
+    transition: ease-in 150ms;
+}
+
+.navbar li{
+    margin: auto;
+}
+.collapse{
+    width:40%;
+    flex-flow: row-reverse
+    
+}
+.active{
+background-color: #252525;
+    
+}
+
+
+

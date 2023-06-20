@@ -1,0 +1,14 @@
+{
+  "projects": {
+    "default": "mindshare-3ab39"
+  },
+  "targets": {
+    "mindshare-3ab39": {
+      "hosting": {
+        "MindShare": [
+          "app-mindshare"
+        ]
+      }
+    }
+  }
+}
