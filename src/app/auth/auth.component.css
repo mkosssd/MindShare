@@ -1,36 +1,28 @@
 /* input{
   width: 25vw;
 } */
-*{
-  color:white;
-  overflow: hidden;
-  
+* {
+  color: white;
 }
-form{
-  /* border: 1px red solid; */
+
+form {
   width: 90%;
-  /* text-align: center; */
-  
-  /* margin: auto; */
 }
-button{
+button {
   /* background-color: black; */
   border: 1px white solid;
   margin: 1vh;
-  
-  
 }
-button:disabled{
+button:disabled {
   border: 1px white solid;
 }
-.divi{
+.divi {
   font-size: 4vh;
-  
 }
-label{
+label {
   font-size: 1.5vh;
 }
-input{
+input {
   color: black;
   /* height: 4vh; */
 }

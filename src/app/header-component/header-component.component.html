@@ -14,9 +14,9 @@
     <div class="collapse  navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav coll">
         <li class="nav-item">
-          <a class="nav-link active" routerLink="home" routerLinkActive="active" aria-current="page">Home</a>
+          <a class="nav-link" routerLink="home" routerLinkActive="active" aria-current="page">Home</a>
         </li>
-        <li class="nav-item" routerLinkActive="active">
+        <li class="nav-item" routerLinkActive="active" >
           <a class="nav-link" routerLink="/upload">Upload</a>
         </li>
         <li class="nav-item" routerLinkActive="active">
@@ -26,8 +26,8 @@
           <a *ngIf="isAuth" (click)="logout()" style="cursor: pointer;" class="nav-link">Logout</a>
 
         </li>
-        <li class="nav-item">
-          <a *ngIf="isAuth"  class="nav-link" routerLink="profile"><img src="https://source.unsplash.com/random"
+        <li class="nav-item" *ngIf="isAuth">
+          <a   class="nav-link"  routerLink="/profile"><img src="https://source.unsplash.com/random"
             style="width: 50px; height: 50px; border-radius: 50%; border:1px solid black" alt=""></a>
 
         </li>

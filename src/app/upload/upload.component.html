@@ -1,1 +1,28 @@
-<p>upload works!</p>
+<div class="text-center load justify-content-center" *ngIf="onLoad">
+    <app-loader></app-loader>
+  </div>
+  <div >
+<div class="container">
+  <h1 *ngIf="!onLoad">Share your thoughts</h1>
+  <form #upload="ngForm" (ngSubmit)="onUpload(upload)">
+    <div *ngIf="!onLoad">
+    <div class="form-group" >
+      <label for="photo" *ngIf="serveredImg">Upload Photo:</label>
+      <input type="file" *ngIf="serveredImg" (change)="onFileSelected($event)" accept="image/*" id="imagePath" ngModel name="photo">
+      <br>
+      <br>
+      
+      <img [src]=imgs width="400px" alt="{{imgs}}">
+      <button type="button" class="btn btn-primary btn-sm" (click)="picUpload()" *ngIf="serveredImg">Upload</button>
+    </div>
+    <br>
+    <div class="form-group">
+      <label for="caption">Caption:</label>
+      <textarea class="form-control" id="caption" ngModel name="caption" rows="2" required></textarea>
+    </div>
+    <button type="submit" class="btn btn-primary" [disabled]="!upload.valid"> Post</button>
+    <button type="button" class="btn btn-primary" (click)="reset(upload)">Reset</button></div>
+  </form>
+</div>
+
+</div>

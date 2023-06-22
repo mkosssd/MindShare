@@ -1,6 +1,7 @@
-import { Component,OnInit,OnDestroy } from '@angular/core';
+import { Component,OnInit,OnDestroy, Injectable } from '@angular/core';
 import { AuthService } from '../auth/auth.service';
 import {Subscription} from 'rxjs'
+import { UserProfileComponent } from '../user-profile/user-profile.component';
 
 @Component({
   selector: 'app-header-component',
@@ -10,14 +11,12 @@ import {Subscription} from 'rxjs'
 export class HeaderComponentComponent implements OnInit,OnDestroy {
   isAuth = false
   private userSub:Subscription
-  constructor(public auth:AuthService) {
+  constructor(public auth:AuthService,public user:UserProfileComponent) {
     
   }
  ngOnInit(): void {
  this.userSub =  this.auth.user.subscribe(user=>{
     this.isAuth = !!user
-    console.log(this.isAuth)
-    console.log(this.auth)
   })
    
  }
@@ -27,6 +26,9 @@ export class HeaderComponentComponent implements OnInit,OnDestroy {
 logout(){
   this.auth.logout()
 }
+// invokeData(){
+//   this.user.syncData()
+// }
 
   
 }

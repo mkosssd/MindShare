@@ -1,59 +1,25 @@
-<div class="col-md-5">
-  <div class="container">
-    <!-- <div class="col-xs-12"> -->
-    <!-- <div class="col-xs-9"> -->
-    <div class="cards">
-      <div class="userDets"> <img src="{{posts.userData.displayPicture}}" alt="PFP of {{posts.userData.name}}"><span>
-          {{posts.userData.name | uppercase }} </span></div>
-      <img class="card-img-top" src="{{posts.postImage}}" width="90%" height="60%" style="object-fit: contain; "
-        alt="User Post">
-
-      <div class="card-body">
-        <p class="card-text"> {{posts.postText}}
-          <br>
-          <li class="timeStamp">{{posts.timeStamp | date:"medium" }}</li>
-        </p>
-      </div>
-    </div>
-    <div class="cards">
-      <div class="userDets"> <img src="{{posts.userData.displayPicture}}" alt="PFP of {{posts.userData.name}}"><span>
-          {{posts.userData.name | uppercase }} </span></div>
-      <img class="card-img-top" src="{{posts.postImage}}" width="90%" height="60%" style="object-fit: contain; "
-        alt="User Post">
-
-      <div class="card-body">
-        <p class="card-text"> {{posts.postText}}
-          <br>
-          <li class="timeStamp">{{posts.timeStamp | date:"medium" }}</li>
-        </p>
-      </div>
-    </div>
-    <div class="cards">
-      <div class="userDets"> <img src="{{posts.userData.displayPicture}}" alt="PFP of {{posts.userData.name}}"><span>
-          {{posts.userData.name | uppercase }} </span></div>
-      <img class="card-img-top" src="{{posts.postImage}}" width="90%" height="60%" style="object-fit: contain; "
-        alt="User Post">
-
-      <div class="card-body">
-        <p class="card-text"> {{posts.postText}}
-          <br>
-          <li class="timeStamp">{{posts.timeStamp | date:"medium" }}</li>
-        </p>
-      </div>
-    </div>
-    <div class="cards">
-      <div class="userDets"> <img src="{{posts.userData.displayPicture}}" alt="PFP of {{posts.userData.name}}"><span>
-          {{posts.userData.name | uppercase }} </span></div>
-      <img class="card-img-top" src="{{posts.postImage}}" width="90%" height="60%" style="object-fit: contain; "
-        alt="User Post">
-
-      <div class="card-body">
-        <p class="card-text"> {{posts.postText}}
-          <br>
-          <li class="timeStamp">{{posts.timeStamp | date:"medium" }}</li>
-        </p>
-      </div>
-    </div>
-  </div>
+<div class="text-center load justify-content-center" *ngIf="onLoad">
+  <app-loader></app-loader>
 </div>
-<!-- </div> -->
+<div class="col-md-5" *ngIf="!onLoad">
+  <div class="container" *ngFor="let post of posts_ ">
+    <div class="cards">
+      <div class="userDets"> <img src="../../assets/Screenshot 2023-06-17 183301.jpg" alt="PFP"><span>
+          {{post.name | uppercase }} </span></div>
+      <img  class="card-img-top" [src]="post.path" width="90%" height="60%" style="object-fit: contain; "
+        alt="User Post" >
+        <!-- *ngIf="post.mediaType==='img'" -->
+        <!-- <video *ngIf="post.mediaType==='video'" src="{{post.path}}" width="100%" height="60%" style="object-fit: contain; " controls ></video> -->
+        
+        
+      <div class="card-body">
+        <p class="card-text"> {{post.caption}}
+          <br>
+          <li class="timeStamp">{{post.date | date:"medium" }} | {{post.email}}</li>
+        </p>
+      </div>
+    </div>
+
+  <!-- </div> -->
+</div>
+</div>
