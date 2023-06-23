@@ -8,11 +8,13 @@
     <div *ngIf="!onLoad">
     <div class="form-group" >
       <label for="photo" *ngIf="serveredImg">Upload Photo:</label>
-      <input class="form-control"  type="file" *ngIf="serveredImg" (change)="onFileSelected($event)" accept="image/*" id="imagePath" ngModel name="photo">
+      <input class="form-control"  type="file" *ngIf="serveredImg" #inps (change)="onFileSelected($event)" accept="image/*" id="imagePath" ngModel name="photo" style="display: none;">
+      <br>
       
-      
+      <p *ngIf="serveredImg" style=" display: inline;"><i (click)="inputFunc()" class="fa fa-upload" ></i></p>
+       
       <img [src]=imgs width="400px" alt="{{imgs}}">
-      <button type="button" class="btn btn-primary btn-sm" (click)="picUpload()" *ngIf="serveredImg">Upload</button>
+      <!-- <button type="button" class="btn btn-primary btn-sm" (click)="picUpload()" *ngIf="serveredImg">Upload</button> -->
     </div>
     <br>
     <div class="form-group">

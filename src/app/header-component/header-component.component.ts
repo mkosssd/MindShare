@@ -20,7 +20,7 @@ export class HeaderComponentComponent implements OnInit,OnDestroy {
     console.log(user)
     this.auth.getUser(user.email).subscribe(res=>{
       if(res[0] && res[0].hasOwnProperty('profilePic')){
-        // this.profilePic=res[0].profilePic
+        this.profilePic=res[0].profilePic
       }else{
         this.profilePic="https://images.unsplash.com/source-404?fit=crop&fm=jpg&h=800&q=60&w=1200"
       }
@@ -34,9 +34,6 @@ export class HeaderComponentComponent implements OnInit,OnDestroy {
 logout(){
   this.auth.logout()
 }
-// invokeData(){
-//   this.user.syncData()
-// }
 
   
 }

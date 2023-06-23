@@ -23,6 +23,10 @@ export class UploadComponent implements OnDestroy {
   imgs = ''
   onFileSelected (event: any) {
     this.selectedFile = event.target.files[0]
+    if(this.selectedFile){
+      this.picUpload()
+    }
+    
     // this.mediaType = this.selectedFile.type.includes('image') ? 'img' : 'video';
   }
   uploaded=true
@@ -66,5 +70,8 @@ export class UploadComponent implements OnDestroy {
   ngOnDestroy(): void {
     // this.subs.unsubscribe()
     
+  }
+  inputFunc(){
+    document.getElementById('imagePath').click()
   }
 }

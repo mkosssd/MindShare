@@ -44,7 +44,7 @@ export class AuthComponent {
       this.auth.signup(email, password).pipe(
         tap(() => {
           this.auth.storeUser(userData).then(() => {
-            this.router.navigate(['/user-profile']);
+            // this.router.navigate(['/user-profile']);
           });
         })
       ).subscribe();

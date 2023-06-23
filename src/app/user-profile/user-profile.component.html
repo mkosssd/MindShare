@@ -5,49 +5,43 @@
     <div class="col-md-6">
         <div class="text-center">
 
-            <div>
+            <img [src]=profilePic alt="" *ngIf="!editMode" style="border-radius: 50%; width:200px; height: 200px; object-fit:cover;">
+            <div *ngIf="editMode"> 
                 <input (click)="change()" type="image" [src]=profilePic
                     style="border-radius: 50%; width:200px; height: 200px; object-fit:cover;">
                 <br>
-                <button (click)="upload" (change)="upload"
+                <button (click)="upload" (change)="upload" disabled
                     style="background: transparent; border: none; font-size: 2vw;" type="button" class="btn"><i
                         class="fa fa-upload"></i></button>
-                <input type="file" id="upload" #upload style="display:none;">
+                <input ngModel name="photo" type="file" id="upload" #upload style="display:none;" (change)="onFileSelected($event)" accept="image/*">
             </div>
             <div class=" col-xs-12 ">
-                <button type="button" (click)="editModeFunc()">EDIT</button>
                 <div class="bg-dark text-center border details" *ngIf="!editMode">
                     <p>Name: {{name}}</p>
                     <p>Email: {{email}}</p>
-                    <p>Age: {{age}}</p>
                     <p>Bio: {{bio}}</p>
-                    <p>DEM</p>
-                    <!-- <img [src]=profilePic alt="" > -->
                 </div>
             </div>
         </div>
 
+        <button type="button" class="btn btn-light btn-sm" *ngIf="!editMode" (click)="editModeFunc()">EDIT</button>
     </div>
     <div class="col-md-6" *ngIf="editMode">
         <form #editUser="ngForm" (ngSubmit)="editServ(editUser)">
             <div class="form-group">
-                <label for="NAME">NAME</label> <input name="name" type="text" class="form-control" [(ngModel)]="name" [disabled]=true>
+                <label for="NAME">NAME</label> <input name="name" type="text" class="form-control" [(ngModel)]="name">
             </div>
             <div class="form-group">
-                <label for="EMAIL">EMAIL</label> <input name="email" type="text" class="form-control" [(ngModel)]="email" 
-                    [disabled]=true>
-            </div>
-            <div class="form-group">
-                <label for="AGE">AGE</label><input type="number" [(ngModel)]="age" name="age" class="form-control"  min=1
-                    max=100>
+                <label for="EMAIL">EMAIL</label> <input name="email" type="text" class="form-control"
+                    [(ngModel)]="email" [disabled]=true>
             </div>
 
 
             <div class="form-group">
-                <label for="BIO">BIO <span>(max 75 chars)</span></label> <textarea name="bio" type="text" ngModel class="form-control" [defaultValue]=bio
-                    maxlength="75"></textarea>
+                <label for="BIO">BIO <span>(max 75 chars)</span></label> <textarea name="bio" type="text" ngModel
+                    class="form-control" [(ngModel)]=bio maxlength="75"></textarea>
             </div>
-            <button type="submit" class="btn btn-success btn-sm" [disabled]="!editUser.valid">EDIT</button>
+            <button type="submit" class="btn btn-success" [disabled]="!editUser.valid">SAVE</button>
         </form>
     </div>
 </div>

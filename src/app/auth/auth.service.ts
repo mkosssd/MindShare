@@ -10,7 +10,7 @@ import { environment } from 'src/environments/environment'
 export interface User {
   name: string
   email: string
-  age:number
+  // age:number
   bio:string
   profilePic:string
 }
@@ -91,13 +91,13 @@ export class AuthService {
   }
   defProfile='https://firebasestorage.googleapis.com/v0/b/mindshare-3ab39.appspot.com/o/Screenshot%202023-06-17%20183301.jpg?alt=media&token=c964126f-6daf-446a-b445-d6c0e314836c'
   bio=''
-  age:number
+  // age:number
   storeUser (userData: { email: string; name: string }) {
-    return this.firestore.collection('UserData').add({
+    return this.firestore.collection<User>('UserData').add({
       name: userData.name,
       email: userData.email,
       bio:this.bio,
-      age:this.age,
+      // age:this.age,
       profilePic:this.defProfile
 
     })
@@ -149,7 +149,7 @@ export class AuthService {
     )
 
     if (loadedUser.token) {
-      // this.getUser(loadedUser.email).subscribe()
+      this.getUser(loadedUser.email).subscribe()
       this.user.next(loadedUser)
       const expireDuration =
         new Date(loggedUserData._tokenExpirationDate).getTime() -
