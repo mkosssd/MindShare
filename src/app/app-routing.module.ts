@@ -6,6 +6,7 @@ import { AuthComponent } from './auth/auth.component';
 import { AuthGuard } from './auth/auth.guard';
 import {UserProfileComponent} from './user-profile/user-profile.component'
 import { LoaderComponent } from './loader/loader.component';
+import { OtherProfilesComponent } from './other-profiles/other-profiles.component';
 
 const routes: Routes = [
   {path:'',redirectTo:'home',pathMatch:'full'},
@@ -14,7 +15,7 @@ const routes: Routes = [
   {path:'upload',component:UploadComponent,canActivate:[AuthGuard]},
   {path:'profile',component:UserProfileComponent,canActivate:[AuthGuard]},
   {path:'auth',component:AuthComponent},
-  {path:'load',component:LoaderComponent}
+  {path:'search/:email',component:OtherProfilesComponent}
 ];
 
 @NgModule({

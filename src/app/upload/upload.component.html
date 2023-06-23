@@ -8,9 +8,8 @@
     <div *ngIf="!onLoad">
     <div class="form-group" >
       <label for="photo" *ngIf="serveredImg">Upload Photo:</label>
-      <input type="file" *ngIf="serveredImg" (change)="onFileSelected($event)" accept="image/*" id="imagePath" ngModel name="photo">
-      <br>
-      <br>
+      <input class="form-control"  type="file" *ngIf="serveredImg" (change)="onFileSelected($event)" accept="image/*" id="imagePath" ngModel name="photo">
+      
       
       <img [src]=imgs width="400px" alt="{{imgs}}">
       <button type="button" class="btn btn-primary btn-sm" (click)="picUpload()" *ngIf="serveredImg">Upload</button>
@@ -20,7 +19,7 @@
       <label for="caption">Caption:</label>
       <textarea class="form-control" id="caption" ngModel name="caption" rows="2" required></textarea>
     </div>
-    <button type="submit" class="btn btn-primary" [disabled]="!upload.valid"> Post</button>
+    <button type="submit" class="btn btn-primary" [disabled]="!upload.valid || uploaded"> Post</button>
     <button type="button" class="btn btn-primary" (click)="reset(upload)">Reset</button></div>
   </form>
 </div>

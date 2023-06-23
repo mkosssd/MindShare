@@ -11,12 +11,20 @@ import { UserProfileComponent } from '../user-profile/user-profile.component';
 export class HeaderComponentComponent implements OnInit,OnDestroy {
   isAuth = false
   private userSub:Subscription
-  constructor(public auth:AuthService,public user:UserProfileComponent) {
-    
+  profilePic:string=''
+  constructor(public auth:AuthService) {
   }
  ngOnInit(): void {
  this.userSub =  this.auth.user.subscribe(user=>{
     this.isAuth = !!user
+    console.log(user)
+    this.auth.getUser(user.email).subscribe(res=>{
+      if(res[0] && res[0].hasOwnProperty('profilePic')){
+        // this.profilePic=res[0].profilePic
+      }else{
+        this.profilePic="https://images.unsplash.com/source-404?fit=crop&fm=jpg&h=800&q=60&w=1200"
+      }
+    })
   })
    
  }

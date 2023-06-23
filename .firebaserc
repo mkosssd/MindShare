@@ -1,6 +1,7 @@
 {
   "projects": {
-    "default": "mindshare-3ab39"
+    "default": "mindshare-e5200",
+    "MindShare": "mindshare-e5200"
   },
   "targets": {
     "mindshare-3ab39": {
@@ -10,5 +11,6 @@
         ]
       }
     }
-  }
+  },
+  "etags": {}
 }

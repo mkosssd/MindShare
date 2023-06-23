@@ -1,0 +1,18 @@
+.details p{
+    border-bottom: 1px solid black;
+}
+.details{
+    padding: 10px;
+}
+input{
+    color:black;
+}
+input.ng-touched.ng-invalid,textarea.ng-touched.ng-invalid{
+    border: 1px red solid;
+}
+.btn{
+    margin: 10px;
+}
+span{
+    font-size: 0.5em;
+}

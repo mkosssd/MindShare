@@ -1,8 +1,8 @@
 <header class="header">
   <nav class="navbar fixed-top navbar-expand-lg">
     <div class="container-fluid">
-      <a class="navbar-brand" href="#"><img src="../../assets/Screenshot_2023-06-17_183301-removebg-preview.png"
-          style="width: 70px;" alt=""></a>
+      <a class="navbar-brand" href="#"><img src="../../assets/Screenshot_2023-06-17_183301-removebg-preview.png" style="width: 70px;" alt="">
+        </a>
       <button class="navbar-toggler btn-nav-accordion" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
         aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon navbar-dark"></span>
@@ -14,20 +14,20 @@
     <div class="collapse  navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav coll">
         <li class="nav-item">
-          <a class="nav-link" routerLink="home" routerLinkActive="active" aria-current="page">Home</a>
+          <a class="nav-link navbarlia" routerLink="home" routerLinkActive="active" aria-current="page">Home</a>
         </li>
         <li class="nav-item" routerLinkActive="active" >
-          <a class="nav-link" routerLink="/upload">Upload</a>
+          <a class="nav-link navbarlia" navbarlia routerLink="/upload">Upload</a>
         </li>
         <li class="nav-item" routerLinkActive="active">
-          <a *ngIf="!isAuth" routerLink="/auth" class="nav-link">Login/Sign Up</a>
+          <a *ngIf="!isAuth" routerLink="/auth" class="nav-link navbarlia">Login/Sign Up</a>
         </li>
         <li class="nav-item">
-          <a *ngIf="isAuth" (click)="logout()" style="cursor: pointer;" class="nav-link">Logout</a>
+          <a *ngIf="isAuth" (click)="logout()" style="cursor: pointer;" class="nav-link navbarlia">Logout</a>
 
         </li>
         <li class="nav-item" *ngIf="isAuth">
-          <a   class="nav-link"  routerLink="/profile"><img src="https://source.unsplash.com/random"
+          <a   class="nav-link"  routerLink="/profile"><img [src]=profilePic  
             style="width: 50px; height: 50px; border-radius: 50%; border:1px solid black" alt=""></a>
 
         </li>

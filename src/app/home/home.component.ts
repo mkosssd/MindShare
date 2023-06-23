@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core'
+import { Component, OnInit,OnDestroy } from '@angular/core'
 import { Posts, PostsService } from './posts.service'
-import { Observable } from 'rxjs'
+import { Observable, Subscription } from 'rxjs'
+
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -19,9 +20,10 @@ export class HomeComponent implements OnInit {
   onLoad = true
   posts$: Observable<any[]>
   posts_: Posts[] = []
+  private subs:Subscription
   ngOnInit (): void {
     this.posts$ = this.posts.getPosts()
-    this.posts$.subscribe(
+   this.posts$.subscribe(
       res => {
         this.posts_ = res
         this.onLoad = false
@@ -31,4 +33,5 @@ export class HomeComponent implements OnInit {
       }
     )
   }
+ 
 }

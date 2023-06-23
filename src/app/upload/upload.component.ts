@@ -1,16 +1,17 @@
-import { Component } from '@angular/core'
+import { Component,OnDestroy } from '@angular/core'
 import { NgForm } from '@angular/forms'
 import { AngularFireStorage } from '@angular/fire/compat/storage'
 import { finalize } from 'rxjs/operators'
 import { UploadService } from './upload.service'
 import { Router } from '@angular/router'
+import { Subscription } from 'rxjs'
 
 @Component({
   selector: 'app-upload',
   templateUrl: './upload.component.html',
   styleUrls: ['./upload.component.css']
 })
-export class UploadComponent {
+export class UploadComponent implements OnDestroy {
   onLoad: boolean = false
   selectedFile: File | null = null
   constructor (
@@ -24,6 +25,7 @@ export class UploadComponent {
     this.selectedFile = event.target.files[0]
     // this.mediaType = this.selectedFile.type.includes('image') ? 'img' : 'video';
   }
+  uploaded=true
   onUpload (form: NgForm) {
     const caps = form.value.caption
 
@@ -34,12 +36,15 @@ export class UploadComponent {
       this.onLoad = false
     }
   }
+  // private subs:Subscription
   picUpload () {
+    this.uploaded =false
     this.onLoad = true
     this.serveredImg = false
     const filePath = `images/${this.selectedFile.name}`
     const fileRef = this.storage.ref(filePath)
     const uploadTask = this.storage.upload(filePath, this.selectedFile)
+  
     uploadTask
       .snapshotChanges()
       .pipe(
@@ -57,5 +62,9 @@ export class UploadComponent {
     form.reset()
     this.imgs = ''
     this.serveredImg = true
+  }
+  ngOnDestroy(): void {
+    // this.subs.unsubscribe()
+    
   }
 }

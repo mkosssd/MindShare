@@ -17,6 +17,7 @@ import { provideAuth,getAuth } from '@angular/fire/auth';
 import { provideFirestore,getFirestore } from '@angular/fire/firestore';
 import { AuthService } from './auth/auth.service';
 import { LoaderComponent } from './loader/loader.component';
+import { OtherProfilesComponent } from './other-profiles/other-profiles.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { LoaderComponent } from './loader/loader.component';
     UploadComponent,
     AuthComponent,
     LogoComponent,
-    LoaderComponent
+    LoaderComponent,
+    OtherProfilesComponent
   ],
   imports: [
     HttpClientModule,

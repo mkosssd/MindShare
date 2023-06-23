@@ -7,11 +7,11 @@
     color: white;
     font-weight: 900;
 }
-.navbar li a:hover{
+.navbarlia:hover{
     transform: scale(1.1);
     transition: ease-in 150ms;
 }
-.navbar li a:active{
+.navbarlia:active{
     transform: scale(0.9);
     transition: ease-in 150ms;
 }
