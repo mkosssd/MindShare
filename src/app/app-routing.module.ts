@@ -15,7 +15,7 @@ const routes: Routes = [
   {path:'upload',component:UploadComponent,canActivate:[AuthGuard]},
   {path:'profile',component:UserProfileComponent,canActivate:[AuthGuard]},
   {path:'auth',component:AuthComponent},
-  // {path:'search/:email',component:OtherProfilesComponent}
+  {path:'user/:email',component:OtherProfilesComponent,canActivate:[AuthGuard]}
 ];
 
 @NgModule({

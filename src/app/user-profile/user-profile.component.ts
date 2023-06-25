@@ -5,6 +5,7 @@ import { AngularFirestore, docChanges } from '@angular/fire/compat/firestore'
 import { Subscription, finalize } from 'rxjs'
 import { Router } from '@angular/router'
 import { AngularFireStorage } from '@angular/fire/compat/storage'
+import { PostsService } from '../home/posts.service'
 @Component({
   selector: 'app-user-profile',
   templateUrl: './user-profile.component.html',
@@ -17,12 +18,15 @@ export class UserProfileComponent implements OnInit, OnDestroy {
   name: string = ''
   email: string = ''
   profilePic = ''
+  username=''
   bio = ''
+  fetch=false
+  selectedProfile: File | null = null
   constructor (
     private auth: AuthService,
     private firestoreDB: AngularFirestore,
-    private router: Router,
-    private storage: AngularFireStorage
+    private storage: AngularFireStorage,
+    private getUserPosts:PostsService
   ) {}
   onLoad = false
   ngOnInit (): void {
@@ -34,11 +38,16 @@ export class UserProfileComponent implements OnInit, OnDestroy {
             this.name = res[0].name
             this.email = res[0].email
             this.bio = res[0].bio
-            if (res[0] && res[0].hasOwnProperty('profilePic')) {
+             if (res[0] && res[0].hasOwnProperty('profilePic')) {
               this.profilePic = res[0].profilePic
             } else {
               this.profilePic =
                 'https://images.unsplash.com/source-404?fit=crop&fm=jpg&h=800&q=60&w=1200'
+            }
+             if (res[0] && res[0].hasOwnProperty('username')) {
+              this.username = res[0].username
+            } else {
+              this.username = 'NA'
             }
             this.onLoad = false
           }
@@ -52,7 +61,6 @@ export class UserProfileComponent implements OnInit, OnDestroy {
       this.picUpload()
     }
   }
-  selectedProfile: File | null = null
   picUpload () {
     this.onLoad = true
     const filePath = `profile/${this.selectedProfile.name}`
@@ -87,7 +95,7 @@ export class UserProfileComponent implements OnInit, OnDestroy {
     const bio = form.value.bio
     const name = form.value.name
     const userD = 'UserData'
-    const query = this.firestoreDB.collection('UserData', ref =>
+    const query = this.firestoreDB.collection(userD, ref =>
       ref.where('email', '==', this.email)
     )
     this.unsub = query.snapshotChanges().subscribe(querySnap => {
@@ -101,9 +109,13 @@ export class UserProfileComponent implements OnInit, OnDestroy {
       })
     })
     this.editModeFunc()
-    // this.unsub.unsubscribe()
   }
   ngOnDestroy (): void {
-    this.unsub.unsubscribe()
+    // this.unsub.unsubscribe()
+  }
+  fetchPosts(){
+    this.getUserPosts.getUserPosts(this.email).subscribe(res=>{
+      console.log(res)
+    })
   }
 }

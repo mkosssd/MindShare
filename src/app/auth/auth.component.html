@@ -1,25 +1,31 @@
+<ng-template appPlaceHolder></ng-template>
 <div class="row">
   <div class="col-xs-8 col-md-6 col-md-offset-3">
-    
+
     <form #authForm="ngForm" (ngSubmit)="onSubmit(authForm)">
       <div class="form-group" *ngIf="!isLoginMode">
         <label for="username">NAME</label><input type="text" ngModel name="name" class="form-control" placeholder="NAME"
-          required >
+          required>
       </div>
-      
+
       <div class="form-group">
-        <label for="email">EMAIL</label><input type="email" ngModel name="email" class="form-control" placeholder="EMAIL"
-          required email>
+        <label for="email">EMAIL</label><input type="email" ngModel name="email" class="form-control"
+          placeholder="EMAIL" required email>
       </div>
-      <div class="form-group">
+      <div class="form-group" *ngIf="!reset">
         <label for="password">PASSWORD</label><input type="password" ngModel name="password" class="form-control"
-          placeholder="PASSWORD" required password>
+          placeholder="PASSWORD" required password minlength="8">
 
       </div>
       <div>
-        <button type="submit" class="btn btn-dark" [disabled]="!authForm.valid">{{isLoginMode?'Login':'Sign Up'}}</button> <span class="divi">|</span>&nbsp;
-        <label for="sign up">NEW USER?</label>
-        <button type="button" class="btn btn-dark" (click)="onSignup()">{{isLoginMode?'Sign Up':'Login'}}</button>
+        <button type="submit" class="btn btn-dark" (click)="onSubmit(authForm)" [disabled]="!authForm.valid"
+          *ngIf="!reset">{{isLoginMode?'Login':'Sign Up'}}</button> <span class="divi" *ngIf="!reset">|</span>&nbsp;
+        <button type="submit" class="btn btn-dark"  [disabled]="!authForm.valid" (click)="resetPassword(authForm)" *ngIf="reset">Send Reset
+          Link</button>
+        <button type="button" class="btn btn-dark btn-sm" (click)="toReset()" *ngIf="!reset">Reset</button>
+        <label for="sign up" *ngIf="!reset">NEW USER?</label>
+        <button type="button" class="btn btn-dark" *ngIf="!reset" (click)="onSignup()">{{isLoginMode ?'Sign
+          Up':'Login'}}</button>
       </div>
     </form>
   </div>
@@ -27,5 +33,3 @@
     <app-logo></app-logo>
   </div>
 </div>
-
-

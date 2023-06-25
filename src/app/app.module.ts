@@ -15,9 +15,10 @@ import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
 import { environment } from '../environments/environment';
 import { provideAuth,getAuth } from '@angular/fire/auth';
 import { provideFirestore,getFirestore } from '@angular/fire/firestore';
-import { AuthService } from './auth/auth.service';
 import { LoaderComponent } from './loader/loader.component';
 import { OtherProfilesComponent } from './other-profiles/other-profiles.component';
+import { PlaceHolderDirective } from './place-holder.directive';
+import { AlertComponent } from './alert/alert.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,9 @@ import { OtherProfilesComponent } from './other-profiles/other-profiles.componen
     AuthComponent,
     LogoComponent,
     LoaderComponent,
-    OtherProfilesComponent
+    OtherProfilesComponent,
+    PlaceHolderDirective,
+    AlertComponent,
   ],
   imports: [
     HttpClientModule,

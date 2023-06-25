@@ -1,13 +1,14 @@
 export const environment = {
   production:false,
-  firebaseAPIKey:'AIzaSyALDE8UF8Hs3Cd1Hiy8VbP9vB3AYS2GKow',
-     firebase : {
-  apiKey: "AIzaSyALDE8UF8Hs3Cd1Hiy8VbP9vB3AYS2GKow",
-  authDomain: "mindshare-e5200.firebaseapp.com",
-  projectId: "mindshare-e5200",
-  storageBucket: "mindshare-e5200.appspot.com",
-  messagingSenderId: "432451289126",
-  appId: "1:432451289126:web:ec4aa946d4da793f3d26e7",
-  measurementId: "G-KM1SE031EH"
-},
+  firebaseAPIKey:'AIzaSyCgZpa69S4Mt_o_x8QIrm6S7mYE-QWbE1o',
+  firebase: {
+    apiKey: "AIzaSyCgZpa69S4Mt_o_x8QIrm6S7mYE-QWbE1o",
+    authDomain: "mindshare-3ab39.firebaseapp.com",
+    databaseURL: "https://mindshare-3ab39-default-rtdb.firebaseio.com",
+    projectId: "mindshare-3ab39",
+    storageBucket: "mindshare-3ab39.appspot.com",
+    messagingSenderId: "1026892817254",
+    appId: "1:1026892817254:web:34f55c8c9e0fe7e3d6dea7",
+    measurementId: "G-K32GDX0Z5Y"
+  }
 }

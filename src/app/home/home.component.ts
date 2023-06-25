@@ -1,37 +1,54 @@
-import { Component, OnInit,OnDestroy } from '@angular/core'
+import { Component, OnInit, OnDestroy } from '@angular/core'
 import { Posts, PostsService } from './posts.service'
 import { Observable, Subscription } from 'rxjs'
+import { AuthService } from '../auth/auth.service'
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
-export class HomeComponent implements OnInit {
-  constructor (private posts: PostsService) {}
-  // posts={
-  //   userData:{
-  //   name:'Manas Khandelwal',
-  //   displayPicture:'https://random.imagecdn.app/500/150'},
-  //   postText:'Lorem  Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam quasi eligendi hic. Dolorum ad ipsa, corrupti voluptates illo saepe debitis earum repudiandae rerum perspiciatis, amet aut nesciunt assumenda at ab neque impedit similique iure. lorem343 ipsum dolor sit amet consectetur adipisicing elit. Doloremque ipsum accusantium dolor sapiente! Ducimus illo libero facilis repellat quia laborum odit dignissimos cum, quo autem tempore doloremque ratione veritatis vel animi rerum itaque ex delectus. Asperiores dignissimos impedit natus fugiat sint incidunt, beatae libero aliquam veniam expedita accusamus neque adipisci obcaecati hic accusantium sit!',
-  //   postImage:'https://firebasestorage.googleapis.com/v0/b/mindshare-3ab39.appspot.com/o/images%2FScreenshot%202023-06-17%20183301.jpg?alt=media&token=aaf83612-880c-4124-8df6-aa4dee74d435',
-  //   timeStamp:new Date
-  // }
+export class HomeComponent implements OnInit, OnDestroy {
+  constructor (private posts: PostsService, private auth: AuthService) {}
+
+  posts_: any[] = []
   onLoad = true
   posts$: Observable<any[]>
-  posts_: Posts[] = []
-  private subs:Subscription
+  private subs: Subscription
   ngOnInit (): void {
     this.posts$ = this.posts.getPosts()
-   this.posts$.subscribe(
+  this.sub2=  this.posts$.subscribe(
       res => {
-        this.posts_ = res
         this.onLoad = false
+        this.processPosts(res)
       },
       error => {
         console.error(error) // Log any errors
       }
     )
   }
- 
+  processPosts (posts: Posts[]): void {
+    posts.forEach(post => {
+      const email = post.email
+    this.sub=  this.auth.getUser(email).subscribe(
+        user => {
+          const postWithUser = {
+            post,
+            user
+          }
+          this.posts_.push(postWithUser)
+        },
+        error => {
+          console.error(error) // Log any errors
+        }
+      )
+    })
+  }
+  private sub:Subscription
+  private sub2:Subscription
+  ngOnDestroy (): void {
+    //  this.posts$.
+    this.sub.unsubscribe()
+    this.sub2.unsubscribe()
+  }
 }

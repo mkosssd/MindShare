@@ -6,7 +6,6 @@
       <button class="navbar-toggler btn-nav-accordion" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
         aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon navbar-dark"></span>
-        <i class="fas fa-chevron-down "></i>
 
       </button>
 
@@ -27,7 +26,7 @@
 
         </li>
         <li class="nav-item" *ngIf="isAuth">
-          <a   class="nav-link"  routerLink="/profile"><img [src]=profilePic  
+          <a  *ngIf="isAuth" class="nav-link"  routerLink="/profile"><img [src]=profilePic  
             style="width: 50px; height: 50px; border-radius: 50%; border:1px solid black" alt=""></a>
 
         </li>

@@ -6,13 +6,14 @@ import { Router } from '@angular/router'
 import { AngularFirestore } from '@angular/fire/compat/firestore'
 import { IntUserData } from './user.model'
 import { environment } from 'src/environments/environment'
+import { AngularFireAuth } from '@angular/fire/compat/auth'
 
 export interface User {
   name: string
   email: string
-  // age:number
-  bio:string
-  profilePic:string
+  bio: string
+  profilePic: string
+  username: string
 }
 
 export interface AuthResponseData {
@@ -36,7 +37,8 @@ export class AuthService {
   constructor (
     private http: HttpClient,
     private firestore: AngularFirestore,
-    private router: Router
+    private router: Router,
+    private firAuth: AngularFireAuth
   ) {}
 
   signup (email: string, password: string) {
@@ -89,29 +91,82 @@ export class AuthService {
         })
       )
   }
-  defProfile='https://firebasestorage.googleapis.com/v0/b/mindshare-3ab39.appspot.com/o/Screenshot%202023-06-17%20183301.jpg?alt=media&token=c964126f-6daf-446a-b445-d6c0e314836c'
-  bio=''
-  // age:number
+  defProfile =
+    'https://firebasestorage.googleapis.com/v0/b/mindshare-3ab39.appspot.com/o/Screenshot%202023-06-17%20183301.jpg?alt=media&token=c964126f-6daf-446a-b445-d6c0e314836c'
+  bio = ''
+  adjectives = [
+    'Cool',
+    'Awesome',
+    'Epic',
+    'Rad',
+    'Sleek',
+    'Stellar',
+    'Ninja',
+    'Dynamic',
+    'Glorious',
+    'Mystic'
+  ]
+  nouns = [
+    'Phoenix',
+    'Vortex',
+    'Zenith',
+    'Luminary',
+    'Nova',
+    'Spectre',
+    'Infinity',
+    'Avalanche',
+    'Champion',
+    'Enigma'
+  ]
+  randomAdjective =
+    this.adjectives[Math.floor(Math.random() * this.adjectives.length)]
+  randomNoun = this.nouns[Math.floor(Math.random() * this.nouns.length)]
+  username = this.randomAdjective + this.randomNoun
   storeUser (userData: { email: string; name: string }) {
     return this.firestore.collection<User>('UserData').add({
       name: userData.name,
       email: userData.email,
-      bio:this.bio,
-      // age:this.age,
-      profilePic:this.defProfile
-
+      bio: this.bio,
+      profilePic: this.defProfile,
+      username: this.username + Math.floor(Math.random() * (1 + 999 + 1) + 1)
     })
   }
 
   getUser (email: string) {
-    // console.log(email)
     return this.firestore
       .collection<User>('UserData', ref => ref.where('email', '==', email))
       .valueChanges()
   }
 
   private handleError (errorResponse: HttpErrorResponse) {
-    return throwError(errorResponse.error.error.message)
+    // this.error = 'AN ERROR OCCURED'
+    let errorMessage = 'An unknown error occured!'
+    if (!errorResponse.error || !errorResponse.error.error) {
+      return throwError(errorMessage)
+    }
+    switch (errorResponse.error.error.message) {
+      case 'EMAIL_EXISTS':
+        errorMessage = 'The email address is already in use!'
+        break
+      case 'OPERATION_NOT_ALLOWED':
+        errorMessage = 'Password sign-in is disabled for this project!'
+        break
+      case 'INVALID_EMAIL':
+        errorMessage = 'Please enter a valid email'
+        break
+      case 'EMAIL_NOT_FOUND':
+        errorMessage = 'user not found!'
+        break
+      case 'INVALID_PASSWORD':
+        errorMessage = 'Invalid password!'
+        break
+      case 'USER_DISABLED':
+        errorMessage = 'User has been disabled'
+        break
+      default:
+        errorMessage = errorResponse.error.error.message
+    }
+    return throwError(errorMessage)
   }
 
   private handleAuth (
@@ -172,5 +227,8 @@ export class AuthService {
       clearTimeout(this.tokenExpirationTimer)
     }
     this.tokenExpirationTimer = null
+  }
+  resetPassword (email) {
+    this.firAuth.sendPasswordResetEmail(email)
   }
 }

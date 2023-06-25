@@ -5,7 +5,8 @@
 /tmp
 /out-tsc
 /bazel-out
-
+/env.mach2002.ts
+../../env.mach2002.ts
 # Node
 /node_modules
 npm-debug.log

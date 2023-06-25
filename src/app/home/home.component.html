@@ -2,20 +2,20 @@
   <app-loader></app-loader>
 </div>
 <div class="col-md-5" *ngIf="!onLoad">
-  <div class="container" *ngFor="let post of posts_ ">
+  <div class="container" *ngFor="let post of posts_ let i = index" >
     <div class="cards">
-      <div class="userDets"> <img src="../../assets/Screenshot 2023-06-17 183301.jpg" alt="PFP"><span>
-          {{post.name | uppercase }} </span></div>
-      <img  class="card-img-top" [src]="post.path" width="90%" height="60%" style="object-fit: contain; "
+      <div class="userDets"> <img src={{post.user[0].profilePic}} class="image-responsive" alt="PFP"><span>
+        <a href="/user/{{post.post.email}}">  {{post.post.name | uppercase }}</a> </span></div>
+      <img  class="card-img-top" [src]="post.post.path" width="90%" height="60%" style="object-fit: contain; "
         alt="User Post" >
         <!-- *ngIf="post.mediaType==='img'" -->
         <!-- <video *ngIf="post.mediaType==='video'" src="{{post.path}}" width="100%" height="60%" style="object-fit: contain; " controls ></video> -->
         
         
       <div class="card-body">
-        <p class="card-text"> {{post.caption}}
+        <p class="card-text"> {{post.post.caption}}
           <br>
-          <li class="timeStamp">{{post.date | date:"medium" }} | {{post.email}}</li>
+          <li class="timeStamp">{{post.post.date | date:"medium" }} | {{post.post.email}}</li>
         </p>
       </div>
     </div>
