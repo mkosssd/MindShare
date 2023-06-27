@@ -1,15 +1,14 @@
 import {
   Component,
-  ComponentFactoryResolver,
   Injectable,
-  ViewChild
+  ViewChild,
+  OnDestroy
 } from '@angular/core'
 import { NgForm } from '@angular/forms'
 import { tap } from 'rxjs/operators'
 import { Router } from '@angular/router'
 import { AuthService } from './auth.service'
 import { PlaceHolderDirective } from '../place-holder.directive'
-import { AlertComponent } from '../alert/alert.component'
 import { Subscription } from 'rxjs'
 
 @Injectable({
@@ -20,7 +19,7 @@ import { Subscription } from 'rxjs'
   templateUrl: './auth.component.html',
   styleUrls: ['./auth.component.css']
 })
-export class AuthComponent {
+export class AuthComponent implements OnDestroy{
   @ViewChild(PlaceHolderDirective, { static: false })
   alertHost: PlaceHolderDirective
   isLoginMode = true
@@ -29,21 +28,21 @@ export class AuthComponent {
   constructor (
     private auth: AuthService,
     private router: Router,
-    private componentFactoryRes: ComponentFactoryResolver
   ) {}
 
   onSignup () {
     this.isLoginMode = !this.isLoginMode
   }
-  error:string = null
+  unsubs:Subscription
+  error=false
+  message:string
   onSubmit (form: NgForm) {
     const email = form.value.email
     const password = form.value.password
     const name = form.value.name
     const userData = { email, name }
-
     if (this.isLoginMode) {
-      this.auth
+   this.unsubs=   this.auth
         .login(email, password)
         .pipe(
           tap(() => {
@@ -53,31 +52,31 @@ export class AuthComponent {
                 this.router.navigate(['/home'])
               }
             })
-            // this.router.navigate(['/user-profile']);
           })
         )
         .subscribe(
           res => {},
           errorMessage => {
-            this.error = errorMessage
-            this.showErrorAlert(errorMessage)
+            this.error = true
+            this.message = errorMessage
+
           }
         )
     } else {
-      this.auth
+      this.unsubs=    this.auth
         .signup(email, password)
         .pipe(
           tap(() => {
             this.auth.storeUser(userData).then(() => {
-              // this.router.navigate(['/user-profile']);
             })
           })
         )
         .subscribe(
           res => {},
           errorMessage => {
-            this.error = errorMessage
-            this.showErrorAlert(errorMessage)
+            this.error = true
+            this.message = errorMessage
+
           }
         )
     }
@@ -86,22 +85,18 @@ export class AuthComponent {
   toReset () {
     this.reset = !this.reset
   }
+  resetSent=false
+  res:string
   resetPassword (form: NgForm) {
     this.auth.resetPassword(form.value.email)
-    this.reset = false
+    this.resetSent=true
+    this.res='CHECK your email '
+
+
+    
+  
   }
-  closeSub:Subscription
-  private showErrorAlert (message: string) {
-    const alertCompFactory =
-      this.componentFactoryRes.resolveComponentFactory(AlertComponent)
-    const hostViewContainerRef = this.alertHost.viewContainerRef
-    hostViewContainerRef.clear()
-    const componentRef = hostViewContainerRef.createComponent(alertCompFactory)
-    componentRef.instance.message = message
-    this.closeSub = componentRef.instance.close.subscribe(() => {
-      this.closeSub.unsubscribe()
-      // this.alertHost.viewContainerRef.clear()
-      hostViewContainerRef.clear()
-    })
+  ngOnDestroy(): void {
+    this.unsubs.unsubscribe()
   }
 }

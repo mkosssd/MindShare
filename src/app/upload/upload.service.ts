@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { NgForm } from '@angular/forms';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { AuthService } from '../auth/auth.service';
 
@@ -15,22 +14,22 @@ export class UploadService {
   upload(caps: string, imgPath: string) {
     this.auth.user.subscribe(res => {
       this.auth.getUser(res.email).subscribe(userRes => {
-        console.log(userRes[0].name + "Dsdsds");
         this.user = userRes[0].email;
         this.userName = userRes[0].name;
-
-        this.firestore.collection('posts').add({
+          
+        this.firestore.collection('newPosts').add({
           email: this.user,
           caption: caps,
           path: imgPath,
           name: this.userName,
-          date: new Date().getTime()
+          date: new Date().getTime(),
+          postId:this.firestore.createId()
         })
         .then(() => {
-          console.log('Document successfully written.');
+          // console.log('Document successfully written.');
         })
         .catch(error => {
-          console.error('Error writing document: ', error);
+          // console.error('Error writing document: ', error);
         });
       });
     });

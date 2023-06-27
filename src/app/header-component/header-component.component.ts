@@ -36,5 +36,7 @@ logout(){
   this.auth.logout()
 }
 
-  
+  reload(){
+    location.reload()
+  }
 }

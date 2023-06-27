@@ -39,7 +39,7 @@
     font-weight: 900;
     
 }
-.userDets span{
+.userDets .postName{
     margin: auto 0;
     padding-left: 0.2vw;
 }
@@ -54,3 +54,21 @@
     justify-content: center;
     height: 70vh;
 }
+.userDets .postName a{
+    text-decoration: none;
+  }
+.userDets .postName a:hover{
+    color: #909090  ;
+  }
+button{
+    border: none;
+    font-size: 1.5vw;
+}
+button:active{
+    transform: scale(0.8);
+    transition: ease-in-out 100ms;
+}
+.black-heart {
+    color: black;
+  }
+  

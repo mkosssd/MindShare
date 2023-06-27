@@ -26,3 +26,13 @@ input {
   color: black;
   /* height: 4vh; */
 }
+input.ng-touched.ng-invalid{
+  border: 1px red solid;
+}
+.error{
+  color:red;
+  font-size: 1.5vh;
+}
+.resets{
+  font-size: 1.5vh;
+}

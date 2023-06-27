@@ -230,5 +230,6 @@ export class AuthService {
   }
   resetPassword (email) {
     this.firAuth.sendPasswordResetEmail(email)
+    
   }
 }

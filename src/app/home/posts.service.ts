@@ -7,6 +7,7 @@ export interface Posts {
   path: string
   date: Date
   name: string
+  postId:string
 }
 @Injectable({
   providedIn: 'root'
@@ -14,10 +15,10 @@ export interface Posts {
 export class PostsService {
   constructor (private firestore: AngularFirestore) {}
   getPosts (): Observable<any> {
-    return this.firestore.collection('posts').valueChanges()
+    return this.firestore.collection('newPosts').valueChanges()
   }
   getUserPosts (email: any) {
-    return this.firestore.collection('posts', ref =>
+    return this.firestore.collection('newPosts', ref =>
       ref.where('email', '==', email)
     ).valueChanges()
   }
