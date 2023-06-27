@@ -78,8 +78,8 @@ export class UploadComponent implements OnDestroy {
     }
 
   ngOnDestroy(): void {
-    if (this.subs) {
-      this.subs.unsubscribe();
-    }
+    // if (this.subs) {
+    //   this.subs.unsubscribe();
+    // }
   }
 }

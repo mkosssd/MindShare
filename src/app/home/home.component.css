@@ -18,6 +18,8 @@
 
 .cards img:nth-child(2){
     border: 1px solid #000000;
+    /* object-fit: contain;
+    height: 50vh; */
     
 }
 .cards .userDets img{
