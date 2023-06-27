@@ -17,8 +17,6 @@ import { provideAuth,getAuth } from '@angular/fire/auth';
 import { provideFirestore,getFirestore } from '@angular/fire/firestore';
 import { LoaderComponent } from './loader/loader.component';
 import { OtherProfilesComponent } from './other-profiles/other-profiles.component';
-import { PlaceHolderDirective } from './place-holder.directive';
-import { AlertComponent } from './alert/alert.component';
 
 @NgModule({
   declarations: [
@@ -31,8 +29,6 @@ import { AlertComponent } from './alert/alert.component';
     LogoComponent,
     LoaderComponent,
     OtherProfilesComponent,
-    PlaceHolderDirective,
-    AlertComponent,
   ],
   imports: [
     HttpClientModule,

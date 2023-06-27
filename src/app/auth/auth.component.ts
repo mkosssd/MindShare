@@ -8,7 +8,6 @@ import { NgForm } from '@angular/forms'
 import { tap } from 'rxjs/operators'
 import { Router } from '@angular/router'
 import { AuthService } from './auth.service'
-import { PlaceHolderDirective } from '../place-holder.directive'
 import { Subscription } from 'rxjs'
 
 @Injectable({
@@ -20,8 +19,6 @@ import { Subscription } from 'rxjs'
   styleUrls: ['./auth.component.css']
 })
 export class AuthComponent implements OnDestroy{
-  @ViewChild(PlaceHolderDirective, { static: false })
-  alertHost: PlaceHolderDirective
   isLoginMode = true
   name = ''
   email = ''
