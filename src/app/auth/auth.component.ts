@@ -1,9 +1,4 @@
-import {
-  Component,
-  Injectable,
-  ViewChild,
-  OnDestroy
-} from '@angular/core'
+import { Component, Injectable, OnDestroy } from '@angular/core'
 import { NgForm } from '@angular/forms'
 import { tap } from 'rxjs/operators'
 import { Router } from '@angular/router'
@@ -18,28 +13,25 @@ import { Subscription } from 'rxjs'
   templateUrl: './auth.component.html',
   styleUrls: ['./auth.component.css']
 })
-export class AuthComponent implements OnDestroy{
+export class AuthComponent implements OnDestroy {
   isLoginMode = true
   name = ''
   email = ''
-  constructor (
-    private auth: AuthService,
-    private router: Router,
-  ) {}
+  constructor (private auth: AuthService, private router: Router) {}
 
   onSignup () {
     this.isLoginMode = !this.isLoginMode
   }
-  unsubs:Subscription
-  error=false
-  message:string
+  unsubs: Subscription
+  error = false
+  message: string
   onSubmit (form: NgForm) {
     const email = form.value.email
     const password = form.value.password
     const name = form.value.name
     const userData = { email, name }
     if (this.isLoginMode) {
-   this.unsubs=   this.auth
+      this.unsubs = this.auth
         .login(email, password)
         .pipe(
           tap(() => {
@@ -56,16 +48,14 @@ export class AuthComponent implements OnDestroy{
           errorMessage => {
             this.error = true
             this.message = errorMessage
-
           }
         )
     } else {
-      this.unsubs=    this.auth
+      this.unsubs = this.auth
         .signup(email, password)
         .pipe(
           tap(() => {
-            this.auth.storeUser(userData).then(() => {
-            })
+            this.auth.storeUser(userData).then(() => {})
           })
         )
         .subscribe(
@@ -73,7 +63,6 @@ export class AuthComponent implements OnDestroy{
           errorMessage => {
             this.error = true
             this.message = errorMessage
-
           }
         )
     }
@@ -82,18 +71,14 @@ export class AuthComponent implements OnDestroy{
   toReset () {
     this.reset = !this.reset
   }
-  resetSent=false
-  res:string
+  resetSent = false
+  res: string
   resetPassword (form: NgForm) {
     this.auth.resetPassword(form.value.email)
-    this.resetSent=true
-    this.res='CHECK your email '
-
-
-    
-  
+    this.resetSent = true
+    this.res = 'CHECK your email '
   }
-  ngOnDestroy(): void {
+  ngOnDestroy (): void {
     this.unsubs.unsubscribe()
   }
 }

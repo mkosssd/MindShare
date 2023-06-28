@@ -1,10 +1,12 @@
 <header class="header">
   <nav class="navbar fixed-top navbar-expand-lg">
     <div class="container-fluid">
-      <a class="navbar-brand" href="#"><img src="../../assets/Screenshot_2023-06-17_183301-removebg-preview.png" style="width: 70px;" alt="">
-        </a>
-      <button class="navbar-toggler btn-nav-accordion" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <a class="navbar-brand" href="#"><img src="../../assets/Screenshot_2023-06-17_183301-removebg-preview.png"
+          style="width: 70px;" alt="">
+      </a>
+      <button class="navbar-toggler btn-nav-accordion" type="button" data-bs-toggle="collapse"
+        data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+        aria-label="Toggle navigation">
         <span class="navbar-toggler-icon navbar-dark"></span>
 
       </button>
@@ -13,9 +15,9 @@
     <div class="collapse  navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav coll">
         <li class="nav-item">
-          <a class="nav-link navbarlia" routerLink="/" routerLinkActive="active" aria-current="page">Home</a>
+          <a class="nav-link navbarlia" routerLink="/ " routerLinkActive="active" aria-current="page">Home</a>
         </li>
-        <li class="nav-item" routerLinkActive="active" >
+        <li class="nav-item" routerLinkActive="active">
           <a class="nav-link navbarlia" navbarlia routerLink="/upload">Upload</a>
         </li>
         <li class="nav-item" routerLinkActive="active">
@@ -26,8 +28,8 @@
 
         </li>
         <li class="nav-item" *ngIf="isAuth">
-          <a  *ngIf="isAuth" class="nav-link"  routerLink="/profile"><img [src]=profilePic  
-            style="width: 50px; height: 50px; border-radius: 50%; border:1px solid black" alt=""></a>
+          <a *ngIf="isAuth" class="nav-link" routerLink="/profile"><img [src]=profilePic
+              style="width: 50px; height: 50px; border-radius: 50%; border:1px solid black" alt=""></a>
 
         </li>
       </ul>

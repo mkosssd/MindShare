@@ -6,10 +6,10 @@
       <div class="form-group" *ngIf="!isLoginMode && !reset">
         <label for="username">NAME</label><input type="text" ngModel name="name" class="form-control" placeholder="NAME"
           required>
-        </div>
-        
-        <span class="error" *ngIf="error">{{message | uppercase}}</span>
-        <span class="resets" *ngIf="resetSent">{{res | uppercase}}</span>
+      </div>
+
+      <span class="error" *ngIf="error">{{message | uppercase}}</span>
+      <span class="resets" *ngIf="resetSent">{{res | uppercase}}</span>
       <div class="form-group">
         <label for="email">EMAIL</label><input type="email" ngModel name="email" class="form-control"
           placeholder="EMAIL" required email>
@@ -17,11 +17,12 @@
       <div class="form-group" *ngIf="!reset">
         <label for="password">PASSWORD</label><input type="password" ngModel name="password" class="form-control"
           placeholder="PASSWORD" required password minlength="6">
-        </div>
+      </div>
       <div>
         <button type="submit" class="btn btn-dark" (click)="onSubmit(authForm)" [disabled]="!authForm.valid"
           *ngIf="!reset">{{isLoginMode?'Login':'Sign Up'}}</button> <span class="divi" *ngIf="!reset">|</span>&nbsp;
-        <button type="button" class="btn btn-dark"  [disabled]="!authForm.valid" (click)="resetPassword(authForm)" *ngIf="reset">Send Reset
+        <button type="button" class="btn btn-dark" [disabled]="!authForm.valid" (click)="resetPassword(authForm)"
+          *ngIf="reset">Send Reset
           Link</button>
         <button type="button" class="btn btn-dark btn-sm" (click)="toReset()" *ngIf="!reset">Reset</button>
         <label for="sign up" *ngIf="!reset">NEW USER?</label>

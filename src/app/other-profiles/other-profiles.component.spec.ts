@@ -1,21 +1,21 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing'
 
-import { OtherProfilesComponent } from './other-profiles.component';
+import { OtherProfilesComponent } from './other-profiles.component'
 
 describe('OtherProfilesComponent', () => {
-  let component: OtherProfilesComponent;
-  let fixture: ComponentFixture<OtherProfilesComponent>;
+  let component: OtherProfilesComponent
+  let fixture: ComponentFixture<OtherProfilesComponent>
 
   beforeEach(() => {
     TestBed.configureTestingModule({
       declarations: [OtherProfilesComponent]
-    });
-    fixture = TestBed.createComponent(OtherProfilesComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
+    })
+    fixture = TestBed.createComponent(OtherProfilesComponent)
+    component = fixture.componentInstance
+    fixture.detectChanges()
+  })
 
   it('should create', () => {
-    expect(component).toBeTruthy();
-  });
-});
+    expect(component).toBeTruthy()
+  })
+})

@@ -1,6 +1,4 @@
-/* input{
-  width: 25vw;
-} */
+
 * {
   color: white;
 }
@@ -9,7 +7,6 @@ form {
   width: 90%;
 }
 button {
-  /* background-color: black; */
   border: 1px white solid;
   margin: 1vh;
 }
@@ -24,15 +21,14 @@ label {
 }
 input {
   color: black;
-  /* height: 4vh; */
 }
-input.ng-touched.ng-invalid{
+input.ng-touched.ng-invalid {
   border: 1px red solid;
 }
-.error{
-  color:red;
+.error {
+  color: red;
   font-size: 1.5vh;
 }
-.resets{
+.resets {
   font-size: 1.5vh;
 }

@@ -1,21 +1,22 @@
-.btn{
-    margin: 10px;
+.btn {
+  margin: 10px;
 }
-input.ng-touched.ng-invalid,textarea.ng-touched.ng-invalid{
-    border: 1px red solid;
+input.ng-touched.ng-invalid,
+textarea.ng-touched.ng-invalid {
+  border: 1px red solid;
 }
-.fa{
-    font-size: 5vw;
-    margin-top: 2vh;
-    background-color: #252525;
-    color: white;
-    border-radius: 50%;
-    padding: 20px;
-    border: 3px white solid;
-    cursor:pointer;
+.fa {
+  font-size: 5vw;
+  margin-top: 2vh;
+  background-color: #252525;
+  color: white;
+  border-radius: 50%;
+  padding: 20px;
+  border: 3px white solid;
+  cursor: pointer;
 }
-.fa:hover{
-    transform: scale(1.1);
-    transition: ease-in-out 200ms;
-    border:5px solid white;
+.fa:hover {
+  transform: scale(1.1);
+  transition: ease-in-out 200ms;
+  border: 5px solid white;
 }

@@ -14,10 +14,10 @@ export class OtherProfilesComponent implements OnInit, OnDestroy {
   email: string
   bio: string
   profile: string
-  userPosts:any
-  isLoading=false
-  username:string
-  noPosts=false
+  userPosts: any
+  isLoading = false
+  username: string
+  noPosts = false
   private subs: Subscription
   constructor (
     private router: Router,
@@ -26,7 +26,7 @@ export class OtherProfilesComponent implements OnInit, OnDestroy {
     private posts: PostsService
   ) {}
   ngOnInit (): void {
-    this.isLoading=true
+    this.isLoading = true
     this.route.params.subscribe((params: Params) => {
       this.subs = this.auth.getUser(params['email']).subscribe(res => {
         this.name = res[0].name
@@ -39,19 +39,16 @@ export class OtherProfilesComponent implements OnInit, OnDestroy {
           this.username = 'NA'
         }
       })
-      this.posts
-        .getUserPosts(params['email'])
-        .subscribe(res => {
-          this.userPosts=res
-          if(res.length>0){
-            this.noPosts=true
-          }
-          this.isLoading=false
-        })
+      this.posts.getUserPosts(params['email']).subscribe(res => {
+        this.userPosts = res
+        if (res.length > 0) {
+          this.noPosts = true
+        }
+        this.isLoading = false
+      })
     })
   }
   ngOnDestroy (): void {
     this.subs.unsubscribe()
   }
-
 }

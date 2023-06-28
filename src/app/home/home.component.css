@@ -1,76 +1,80 @@
+.container {
+  border-radius: 10px;
+  background-color: white;
+  padding: 5px;
+  color: #000;
+}
+.cards {
+  margin: 2px;
+  background-color: aliceblue;
+  width: 100%;
+  height: 100%;
+}
+.card-body {
+  border: 1px solid black;
+  padding: 20px;
+  border-radius: 0 0 10px 10px;
+}
 
-.container{
-    border-radius: 10px;
-    background-color: white;
-    padding: 5px;
-    color: #000;
-}
-.cards{
-    margin: 2px;
-    background-color:aliceblue;
-    width: 100%; height: 100%;
-}
-.card-body{
-    border: 1px solid black;
-    padding: 20px;
-    border-radius: 0 0 10px 10px;
-}
-
-.cards img:nth-child(2){
-    border: 1px solid #000000;
-    /* object-fit: contain;
+.cards img:nth-child(2) {
+  border: 1px solid #000000;
+  /* object-fit: contain;
     height: 50vh; */
-    
 }
-.cards .userDets img{
-    border-radius: 50%; border: 1px solid black; display:flex;
-    width:40px ;height:40px;
-    object-fit: cover;
-    
+.cards .userDets img {
+  border-radius: 50%;
+  border: 1px solid black;
+  display: flex;
+  width: 40px;
+  height: 40px;
+  object-fit: cover;
 }
-*{
-    color: black;
+* {
+  color: black;
 }
-.userDets{
-    border-radius: 10px 10px 0 0;
-   
-    display: flex;
-    padding: 0.5vh;
-    border: 1px solid black;
-    border-bottom: none;
-    font-weight: 900;
-    
+.userDets {
+  border-radius: 10px 10px 0 0;
+
+  display: flex;
+  padding: 0.5vh;
+  border: 1px solid black;
+  border-bottom: none;
+  font-weight: 900;
 }
-.userDets .postName{
-    margin: auto 0;
-    padding-left: 0.2vw;
+.userDets .postName {
+  margin: auto 0;
+  padding-left: 0.2vw;
 }
-.timeStamp{
-    font-size: xx-small;
-    display: inline;
-    margin: auto 0;
-    list-style: none;
-    font-weight: 900;
+.timeStamp {
+  font-size: xx-small;
+  display: inline;
+  margin: auto 0;
+  list-style: none;
+  font-weight: 900;
 }
-.load{
-    justify-content: center;
-    height: 70vh;
+.load {
+  justify-content: center;
+  height: 70vh;
 }
-.userDets .postName a{
-    text-decoration: none;
-  }
-.userDets .postName a:hover{
-    color: #909090  ;
-  }
-button{
-    border: none;
-    font-size: 1.5vw;
+.userDets .postName a {
+  text-decoration: none;
 }
-button:active{
-    transform: scale(0.8);
-    transition: ease-in-out 100ms;
+.userDets .postName a:hover {
+  color: #909090;
 }
+button {
+  border: none;
+  font-size: 1.5vw;
+}
+button:active:not(:disabled) {
+  transform: scale(0.8);
+  transition: ease-in-out 100ms;
+}
+
 .black-heart {
-    color: black;
-  }
-  
+  color: black;
+}
+.auth {
+  font-size: 10px;
+  font-weight: 800;
+}

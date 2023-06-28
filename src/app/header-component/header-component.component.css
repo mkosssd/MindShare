@@ -1,33 +1,26 @@
-
-.navbar{
-    background-color: #303030;
-    
+.navbar {
+  background-color: #303030;
 }
-.navbar li a{
-    color: white;
-    font-weight: 900;
+.navbar li a {
+  color: white;
+  font-weight: 900;
 }
-.navbarlia:hover{
-    transform: scale(1.1);
-    transition: ease-in 150ms;
+.navbarlia:hover {
+  transform: scale(1.1);
+  transition: ease-in 150ms;
 }
-.navbarlia:active{
-    transform: scale(0.9);
-    transition: ease-in 150ms;
+.navbarlia:active {
+  transform: scale(0.9);
+  transition: ease-in 150ms;
 }
 
-.navbar li{
-    margin: auto;
+.navbar li {
+  margin: auto;
 }
-.collapse{
-    width:40%;
-    flex-flow: row-reverse
-    
+.collapse {
+  width: 40%;
+  flex-flow: row-reverse;
 }
-.active{
-background-color: #252525;
-    
+.active {
+  background-color: #252525;
 }
-
-
-
