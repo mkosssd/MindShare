@@ -1,6 +1,7 @@
 <div class="text-center load justify-content-center" *ngIf="onLoad">
   <app-loader></app-loader>
 </div>
+
 <div class="col-md-5" *ngIf="!onLoad">
   <div class="container" *ngFor="let post of posts_">
     <div class="cards">
@@ -19,13 +20,26 @@
           <li class="timeStamp">{{post.post.date | date:"medium" }} | {{post.user[0].username}}</li>
 
         </p>
-        <button [disabled]="!currentUser" (click)="toggleLike(post)">
-          <!-- <i class=post.post.isliked ? 'fa-solid fa-heart' : 'fa-regular fa-heart'></i> -->
+        <button class="btn" [disabled]="!currentUser" (click)="toggleLike(post)">
           <i class=" fa-heart {{post.post.isliked?'fa-solid':'fa-regular'}}"></i>
           {{post.post.likes}}
         </button>
         <br>
-        <span class="auth" *ngIf="!currentUser">Please Authenticate To Like Posts!</span>
+        <span class="auth" *ngIf="!currentUser">Please Authenticate To Like This Post!</span>
+        <!-- <button class="btn" [disabled]="!currentUser" (click)="toggleComment(post)">
+          <i class="fa-regular fa-comment"></i>
+          {{post.post.comments.length}}
+        </button>
+        <br>
+        <div *ngIf="post.post.comments && post.commentButton">
+        <p *ngFor="let com of post.post.comments">
+          {{com.comment}}
+        </p></div>
+      <form #comment="ngForm" class="form" (ngSubmit)="forComment(comment,post,post.post.postId)" *ngIf="post.commentButton">
+
+        <input type="text" ngModel name="comment" class="form-control  " >
+        <button class="btn btn-dark btn-sm" type="submit" (click)="forComment(comment,post,post.post.postId)"><i class="fa-regular fa-comment"></i></button>
+      </form> -->
       </div>
     </div>
 

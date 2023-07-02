@@ -34,7 +34,6 @@ export class HomeComponent implements OnInit, OnDestroy {
             liked.likedBy.includes(this.currentUser)
           ) {
             liked.isliked = true
-            console.log('yes')
           } else {
             liked.isliked = false
           }
@@ -94,5 +93,15 @@ export class HomeComponent implements OnInit, OnDestroy {
         'remove'
       )
     }
+  
   }
-}
+  // commentButton=false
+    // toggleComment(post){
+    //   post.commentButton=!post.commentButton
+    // }
+
+    // forComment(comment,post,postId){
+    //   this.posts.comment(comment.value.comment,post.post.comments,postId,this.currentUser)
+      
+    // }
+  }

@@ -22,7 +22,7 @@ export class PostsService implements OnInit {
   currentUser: any
   constructor (private firestore: AngularFirestore, private auth: AuthService) {}
   ngOnInit (): void {
-    this.auth.user.subscribe(res => (this.currentUser = res.email))
+    this.auth.user.subscribe(res => (this.currentUser = res?.email))
   }
   private unsub: Subscription
   getPosts (): Observable<any> {
@@ -65,4 +65,23 @@ export class PostsService implements OnInit {
       })
     })
   }
+  // comment(comment:string,oldComs,postId:string,curUser){
+  //   const posts = 'newPosts'
+  //   const query = this.firestore.collection(posts, ref =>
+  //     ref.where('postId', '==', postId)
+  //   )
+
+  //   this.unsub = query.snapshotChanges().subscribe(querySnap => {
+  //     querySnap.forEach(docChange => {
+  //       const docId = docChange.payload.doc.id
+  //       const ranId=this.firestore.createId()
+  //        this.firestore.doc(`${posts}/${docId}`).update({
+  //           comments: arrayUnion({comment,curUser,ranId}),
+  //           // commentedBy: arrayUnion(curUser)
+  //         })
+          
+  //       this.unsub.unsubscribe()
+  //     })
+  //   })
+  // }
 }

@@ -25,7 +25,9 @@ export class UploadService {
             path: imgPath,
             name: this.userName,
             date: new Date().getTime(),
-            postId: this.firestore.createId()
+            postId: this.firestore.createId(),
+            likes: 0,
+            likedBy: []
           })
           .then(() => {
             // console.log('Document successfully written.');

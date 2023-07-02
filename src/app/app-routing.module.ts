@@ -10,7 +10,6 @@ import { OtherProfilesComponent } from './other-profiles/other-profiles.componen
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: 'home', component: HomeComponent },
-
   { path: 'upload', component: UploadComponent, canActivate: [AuthGuard] },
   {
     path: 'profile',
