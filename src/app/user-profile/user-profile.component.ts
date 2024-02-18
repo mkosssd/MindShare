@@ -5,6 +5,7 @@ import { AngularFirestore } from '@angular/fire/compat/firestore'
 import { Subscription, finalize } from 'rxjs'
 import { AngularFireStorage } from '@angular/fire/compat/storage'
 import { PostsService } from '../home/posts.service'
+import { Meta, Title } from '@angular/platform-browser'
 @Component({
   selector: 'app-user-profile',
   templateUrl: './user-profile.component.html',
@@ -16,10 +17,10 @@ import { PostsService } from '../home/posts.service'
 export class UserProfileComponent implements OnInit {
   name: string = ''
   email: string = ''
-  profilePic = ''
-  username = ''
-  bio = ''
-  fetch = false
+  profilePic:string = ''
+  username:string = ''
+  bio:string = ''
+  fetch:boolean = false
   private unsub: Subscription
   private unsub2: Subscription
   selectedProfile: File | null = null
@@ -27,7 +28,9 @@ export class UserProfileComponent implements OnInit {
     private auth: AuthService,
     private firestoreDB: AngularFirestore,
     private storage: AngularFireStorage,
-    private getUserPosts: PostsService
+    private getUserPosts: PostsService,
+    private metaService: Meta,
+    private titleService: Title
   ) {}
   onLoad = false
   ngOnInit (): void {
@@ -55,6 +58,7 @@ export class UserProfileComponent implements OnInit {
         })
       }
     })
+	this.generatePageMeta()
   }
   onFileSelected (event: any) {
     this.selectedProfile = event.target.files[0]
@@ -114,5 +118,11 @@ export class UserProfileComponent implements OnInit {
   fetchPosts () {
     this.getUserPosts.getUserPosts(this.email).subscribe(res => {
     })
+  }
+  private generatePageMeta(){
+	let title = 'User Profile | MindShare'
+	this.titleService.setTitle(title)
+	let description = 'View Your Own Profile | MindShare'
+	this.metaService.updateTag({ name: 'description', content: description });
   }
 }
