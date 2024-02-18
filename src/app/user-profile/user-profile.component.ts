@@ -113,7 +113,6 @@ export class UserProfileComponent implements OnInit {
 
   fetchPosts () {
     this.getUserPosts.getUserPosts(this.email).subscribe(res => {
-      console.log(res)
     })
   }
 }

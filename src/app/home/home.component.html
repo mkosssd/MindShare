@@ -3,30 +3,34 @@
 </div>
 
 <div class="col-md-5" *ngIf="!onLoad">
-  <div class="container" *ngFor="let post of posts_">
-    <div class="cards">
-      <div class="userDets"> <img src={{post.user[0].profilePic}} class="image-responsive" alt="PFP"><span
-          class="postName">
-          <a routerLink="/user/{{post.post.email}}"> {{post.post.name | uppercase }}</a> </span></div>
-      <img class="card-img-top" [src]="post.post.path" width="90%" height="60%" style="object-fit: contain; "
-        alt="User Post">
-      <!-- *ngIf="post.mediaType==='img'" -->
-      <!-- <video *ngIf="post.mediaType==='video'" src="{{post.path}}" width="100%" height="60%" style="object-fit: contain; " controls ></video> -->
+  <div class="postContainer">
+    <div class="postCards" *ngFor="let post of posts_">
+      <div class="posts">
+        <div class="userDetails"> <img src={{post.user[0].profilePic}} class="image-responsive"
+            alt="{{post.post.name}}"><span class="postName">
+            <a routerLink="/user/{{post.post.email}}"> {{post.post.name | uppercase }}</a> </span></div>
+        <img class="card-img-top" [src]="post.post.path" width="90%" height="60%" style="object-fit: contain; "
+          alt="User Post">
+        <!-- *ngIf="post.mediaType==='img'" -->
+        <!-- <video *ngIf="post.mediaType==='video'" src="{{post.path}}" width="100%" height="60%" style="object-fit: contain; " controls ></video> -->
 
 
-      <div class="card-body">
-        <p class="card-text"> {{post.post.caption}}
+        <div class="post-body">
+          <p class="card-text"> {{post.post.caption}}
+            <br>
+            <li class="timeStamp">{{post.post.date | date:"medium" }} | {{post.user[0].username}}</li>
+
+          </p>
+          <button class="btn" [disabled]="!currentUser" (click)="toggleLike(post)">
+            <!-- <i class=" fa-heart {{post.post.isliked?'fa-solid':'fa-regular'}}"></i> -->
+            <img class="img-fluid LikeImage" [src]="post.post.isliked?'/assets/heart-filled.png':'/assets/heart.png'" width="20" height="20"
+              alt="Like Button">
+
+            {{post.post.likes}}
+          </button>
           <br>
-          <li class="timeStamp">{{post.post.date | date:"medium" }} | {{post.user[0].username}}</li>
-
-        </p>
-        <button class="btn" [disabled]="!currentUser" (click)="toggleLike(post)">
-          <i class=" fa-heart {{post.post.isliked?'fa-solid':'fa-regular'}}"></i>
-          {{post.post.likes}}
-        </button>
-        <br>
-        <span class="auth" *ngIf="!currentUser">Please Authenticate To Like This Post!</span>
-        <!-- <button class="btn" [disabled]="!currentUser" (click)="toggleComment(post)">
+          <span class="auth" *ngIf="!currentUser">Please Authenticate To Like This Post!</span>
+          <!-- <button class="btn" [disabled]="!currentUser" (click)="toggleComment(post)">
           <i class="fa-regular fa-comment"></i>
           {{post.post.comments.length}}
         </button>
@@ -40,9 +44,10 @@
         <input type="text" ngModel name="comment" class="form-control  " >
         <button class="btn btn-dark btn-sm" type="submit" (click)="forComment(comment,post,post.post.postId)"><i class="fa-regular fa-comment"></i></button>
       </form> -->
+        </div>
       </div>
-    </div>
 
+    </div>
   </div>
 </div>
 <div class=" col-xs-5" style="height: 60vh; margin-top:20vh; align-content: center;">
