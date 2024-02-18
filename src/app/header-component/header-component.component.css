@@ -3,13 +3,12 @@
 }
 .navbar li a {
   color: white;
-  font-weight: 900;
 }
-.navbarlia:hover {
+.navbarLinks:hover {
   transform: scale(1.1);
   transition: ease-in 150ms;
 }
-.navbarlia:active {
+.navbarLinks:active {
   transform: scale(0.9);
   transition: ease-in 150ms;
 }

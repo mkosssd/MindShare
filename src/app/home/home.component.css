@@ -1,27 +1,30 @@
-.container {
-  border-radius: 10px;
-  background-color: white;
+.postCards {
   padding: 5px;
   color: #000;
 }
-.cards {
+.postContainer{
+  border-radius: 10px;
+  background-color: white;
+
+}
+.posts {
   margin: 2px;
   background-color: aliceblue;
   width: 100%;
   height: 100%;
 }
-.card-body {
+.post-body {
   border: 1px solid black;
   padding: 20px;
   border-radius: 0 0 10px 10px;
 }
 
-.cards img:nth-child(2) {
+.posts img:nth-child(2) {
   border: 1px solid #000000;
   /* object-fit: contain;
     height: 50vh; */
 }
-.cards .userDets img {
+.posts .userDetails img {
   border-radius: 50%;
   border: 1px solid black;
   display: flex;
@@ -32,16 +35,15 @@
 * {
   color: black;
 }
-.userDets {
+.userDetails {
   border-radius: 10px 10px 0 0;
-
   display: flex;
   padding: 0.5vh;
   border: 1px solid black;
   border-bottom: none;
   font-weight: 900;
 }
-.userDets .postName {
+.userDetails .postName {
   margin: auto 0;
   padding-left: 0.2vw;
 }
@@ -53,13 +55,12 @@
   font-weight: 900;
 }
 .load {
-  justify-content: center;
   height: 70vh;
 }
-.userDets .postName a {
+.userDetails .postName a {
   text-decoration: none;
 }
-.userDets .postName a:hover {
+.userDetails .postName a:hover {
   color: #909090;
 }
 button {
@@ -73,10 +74,10 @@ button:hover{
   background-color: rgb(207, 207, 207);
   border: none;
 }
-button:active:not(:disabled) {
+button:active:not(:disabled) .LikeImage {
   border: 1px solid black;
   transform: scale(0.8);
-  transition: ease-in-out 100ms;
+  transition: ease-in-out 200ms;
 }
 
 .black-heart {

@@ -38,9 +38,11 @@ export class HomeComponent implements OnInit, OnDestroy {
             liked.isliked = false
           }
         }, this.processPosts(res))
+		this.sub2.unsubscribe()
       },
       error => {
         console.error(error)
+		this.sub2.unsubscribe()
       }
     )
   }
@@ -79,12 +81,10 @@ export class HomeComponent implements OnInit, OnDestroy {
     post.isClassActive = !post.isClassActive
     if (!post.post.isliked) {
       post.post.likes++
-      console.log(post.post.likes)
       this.posts.toggleLikes(postId, post.post.likes, this.currentUser, 'add')
       post.post.isliked = !post.post.isliked
     } else {
       post.post.likes--
-      console.log(post.post.likes)
       post.post.isliked = !post.post.isliked
       this.posts.toggleLikes(
         postId,

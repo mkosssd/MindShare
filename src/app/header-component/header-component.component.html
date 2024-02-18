@@ -15,21 +15,22 @@
     <div class="collapse  navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav coll">
         <li class="nav-item">
-          <a class="nav-link navbarlia" routerLink="/home" routerLinkActive="active" aria-current="page">Home</a>
+          <a class="nav-link navbarLinks px-4 fw-bolder" routerLink="/home" routerLinkActive="active"
+            aria-current="page">Home</a>
         </li>
-        <li class="nav-item" routerLinkActive="active">
-          <a class="nav-link navbarlia" navbarlia routerLink="/upload">Upload</a>
+        <li *ngIf="isAuth" class="nav-item" routerLinkActive="active">
+          <a class="nav-link navbarLinks px-4 fw-bolder" routerLink="/upload">Upload</a>
         </li>
-        <li class="nav-item" routerLinkActive="active">
-          <a *ngIf="!isAuth" routerLink="/auth" class="nav-link navbarlia">Login/Sign Up</a>
+        <li *ngIf="!isAuth" class="nav-item rounded" routerLinkActive="active">
+          <a routerLink="/auth" class="nav-link navbarLinks px-4 fw-bolder">Login/Sign Up</a>
         </li>
-        <li class="nav-item">
-          <a *ngIf="isAuth" (click)="logout()" style="cursor: pointer;" class="nav-link navbarlia">Logout</a>
-
-        </li>
+        <button *ngIf="isAuth" class="btn text-white fw-bolder p-0 px-4" (click)="logout()">
+          Logout
+        </button>
         <li class="nav-item" *ngIf="isAuth">
-          <a *ngIf="isAuth" class="nav-link" routerLink="/profile"><img [src]=profilePic
-              style="width: 50px; height: 50px; border-radius: 50%; border:1px solid black" alt=""></a>
+          <a class="nav-link" routerLink="/profile">
+            <img [src]="profilePic" title="Your Profile"
+              style="width: 50px; height: 50px; border-radius: 50%; border:1px solid black" alt="Your Profile"></a>
 
         </li>
       </ul>

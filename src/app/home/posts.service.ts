@@ -79,7 +79,7 @@ export class PostsService implements OnInit {
   //           comments: arrayUnion({comment,curUser,ranId}),
   //           // commentedBy: arrayUnion(curUser)
   //         })
-          
+
   //       this.unsub.unsubscribe()
   //     })
   //   })
