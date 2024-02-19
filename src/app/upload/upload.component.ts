@@ -5,6 +5,7 @@ import { finalize } from 'rxjs/operators'
 import { UploadService } from './upload.service'
 import { Router } from '@angular/router'
 import { Subscription } from 'rxjs'
+import { Meta, Title } from '@angular/platform-browser'
 
 @Component({
   selector: 'app-upload',
@@ -19,8 +20,12 @@ export class UploadComponent {
   constructor (
     private storage: AngularFireStorage,
     private uploadServ: UploadService,
-    private router: Router
-  ) {}
+    private router: Router,
+    private metaService: Meta,
+    private titleService: Title
+  ) {
+	this.generatePageMeta()
+  }
 
   serveredImg = true
   imgs = ''
@@ -78,6 +83,10 @@ export class UploadComponent {
   inputFunc () {
     document.getElementById('imagePath').click()
   }
-
-  
+  private generatePageMeta () {
+    let title = 'Share your thoughts | MindShare'
+    this.titleService.setTitle(title)
+    let description = 'Upload or Share something on MindShare'
+    this.metaService.updateTag({ name: 'description', content: description })
+  }
 }

@@ -12,9 +12,9 @@
             accept="image/*" id="imagePath" ngModel name="photo" style="display: none;">
           <br>
 
-          <p *ngIf="serveredImg" style=" display: inline;"><i (click)="inputFunc()" class="fa fa-upload"></i></p>
+        <img class="img-fluid uploadImage" *ngIf="serveredImg" src="\assets\upload.svg" width="100" alt="Upload Button" (click)="inputFunc()">
 
-          <img [src]=imgs width="400px" alt="{{imgs}}">
+          <img [src]=imgs  width="600" height="400" alt="{{imgs}}" *ngIf="!serveredImg">
           <!-- <button type="button" class="btn btn-primary btn-sm" (click)="picUpload()" *ngIf="serveredImg">Upload</button> -->
         </div>
         <br>

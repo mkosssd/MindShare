@@ -18,6 +18,7 @@ import { provideFirestore, getFirestore } from '@angular/fire/firestore'
 import { LoaderComponent } from './Funcs/loader/loader.component'
 
 import { OtherProfilesComponent } from './other-profiles/other-profiles.component'
+import { TitleCasePipe } from '@angular/common'
 
 @NgModule({
   declarations: [
@@ -40,9 +41,9 @@ import { OtherProfilesComponent } from './other-profiles/other-profiles.componen
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideAuth(() => getAuth()),
     provideFirestore(() => getFirestore()),
-    AngularFireModule.initializeApp(environment.firebase)
+    AngularFireModule.initializeApp(environment.firebase),
   ],
-  providers: [],
+  providers: [TitleCasePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

@@ -2,7 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core'
 import { Observable, Subscription } from 'rxjs'
 import { PostsService } from './posts.service'
 import { AuthService } from '../auth/auth.service'
-import { AngularFirestore } from '@angular/fire/compat/firestore'
+import { Meta, Title } from '@angular/platform-browser'
 
 @Component({
   selector: 'app-home',
@@ -17,7 +17,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   private sub: Subscription
   private sub2: Subscription
 
-  constructor (private posts: PostsService, private auth: AuthService) {}
+  constructor (private posts: PostsService, private auth: AuthService, private metaService: Meta, private titleService: Title) {}
   currentUser: any
   ngOnInit (): void {
     this.auth.user.subscribe(res => {
@@ -39,6 +39,7 @@ export class HomeComponent implements OnInit, OnDestroy {
           }
         }, this.processPosts(res))
 		this.sub2.unsubscribe()
+    this.generatePageMeta()
       },
       error => {
         console.error(error)
@@ -104,4 +105,10 @@ export class HomeComponent implements OnInit, OnDestroy {
     //   this.posts.comment(comment.value.comment,post.post.comments,postId,this.currentUser)
       
     // }
+    private generatePageMeta(){
+      let title = 'Home | MindShare'
+      this.titleService.setTitle(title)
+      let description = 'See Other Users Posts & Interact With Them | MindShare'
+			this.metaService.updateTag({ name: 'description', content: description });
+    }
   }

@@ -4,6 +4,7 @@ import { tap } from 'rxjs/operators'
 import { Router } from '@angular/router'
 import { AuthService } from './auth.service'
 import { Subscription } from 'rxjs'
+import { Meta, Title } from '@angular/platform-browser'
 
 @Injectable({
   providedIn: 'root'
@@ -17,10 +18,18 @@ export class AuthComponent implements OnDestroy {
   isLoginMode = true
   name = ''
   email = ''
-  constructor (private auth: AuthService, private router: Router) {}
+  constructor (
+    private auth: AuthService,
+    private router: Router,
+    private metaService: Meta,
+    private title: Title
+  ) {
+    this.generatePageMeta()
+  }
 
   onSignup () {
     this.isLoginMode = !this.isLoginMode
+	this.generatePageMeta()
   }
   unsubs: Subscription
   error = false
@@ -80,5 +89,13 @@ export class AuthComponent implements OnDestroy {
   }
   ngOnDestroy (): void {
     this.unsubs.unsubscribe()
+  }
+  private generatePageMeta () {
+    let title = 'Log in or Sign up | MindShare'
+    this.title.setTitle(title)
+    let description = `${
+      this.isLoginMode ? 'Log in' : 'Sign Up'
+    } to MindShare to start sharing and connecting with your friends, family and people you know.`
+    this.metaService.updateTag({ name: 'description', content: description })
   }
 }

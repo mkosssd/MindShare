@@ -3,6 +3,8 @@ import { ActivatedRoute, Router, Params } from '@angular/router'
 import { AuthService } from '../auth/auth.service'
 import { Subscription } from 'rxjs'
 import { PostsService } from '../home/posts.service'
+import { Meta, Title } from '@angular/platform-browser'
+import { TitleCasePipe } from '@angular/common'
 
 @Component({
   selector: 'app-other-profiles',
@@ -23,7 +25,10 @@ export class OtherProfilesComponent implements OnInit, OnDestroy {
     private router: Router,
     private route: ActivatedRoute,
     private auth: AuthService,
-    private posts: PostsService
+    private posts: PostsService,
+    private metaService: Meta,
+    private titleService: Title,
+    private titleCase: TitleCasePipe
   ) {}
   ngOnInit (): void {
     this.isLoading = true
@@ -35,9 +40,11 @@ export class OtherProfilesComponent implements OnInit, OnDestroy {
         this.profile = res[0].profilePic
         if (res[0] && res[0].hasOwnProperty('username')) {
           this.username = res[0].username
+          
         } else {
           this.username = 'NA'
         }
+        this.generatePageMeta()
       })
       this.posts.getUserPosts(params['email']).subscribe(res => {
         this.userPosts = res
@@ -47,8 +54,16 @@ export class OtherProfilesComponent implements OnInit, OnDestroy {
         this.isLoading = false
       })
     })
+  
   }
   ngOnDestroy (): void {
     this.subs.unsubscribe()
+  }
+  private generatePageMeta(){
+    let title = `${this.titleCase.transform(this.name)}'s Posts | MindShare`
+    this.titleService.setTitle(title)
+    let description = `See ${this.titleCase.transform(this.name)}'s Posts on MindShare`
+    this.metaService.updateTag({ name: 'description', content: description });
+
   }
 }
