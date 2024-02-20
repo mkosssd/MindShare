@@ -4,12 +4,12 @@
 
 <div class="col-md-5" *ngIf="!onLoad">
   <div class="postContainer">
-    <div class="postCards" *ngFor="let post of posts_">
+    <div class="postCards" *ngFor="let post of posts_;let i = index">
       <div class="posts">
         <div class="userDetails"> <img src={{post.user[0].profilePic}} class="image-responsive"
             alt="{{post.post.name}}"><span class="postName">
             <a routerLink="/user/{{post.post.email}}"> {{post.post.name | uppercase }}</a> </span></div>
-        <img class="card-img-top" [src]="post.post.path" width="600" height="400" style="object-fit: cover; "
+        <img class="card-img-top" (click)="openModal(postModal, i)" [src]="post.post.path" width="600" height="400" style="object-fit: cover; "
           alt="User Post">
         <!-- *ngIf="post.mediaType==='img'" -->
         <!-- <video *ngIf="post.mediaType==='video'" src="{{post.path}}" width="100%" height="60%" style="object-fit: contain; " controls ></video> -->
@@ -54,3 +54,36 @@
 <div class=" col-xs-5" style="height: 60vh; margin-top:20vh; align-content: center;">
   <app-logo></app-logo>
 </div>
+<ng-template #postModal let-modal>
+	<div class="postCards p-1 m-0" >
+		<div class="posts">
+		  <div class="userDetails"> <img src={{modalData.user[0].profilePic}} class="image-responsive"
+			  alt="{{modalData.post.name}}"><span class="postName">
+			  <a routerLink="/user/{{modalData.post.email}}"> {{modalData.post.name | uppercase }}</a> </span></div>
+		  <img class="card-img-top img-fluid" [src]="modalData.post.path" 
+			alt="User Post">
+		  <!-- *ngIf="post.mediaType==='img'" -->
+		  <!-- <video *ngIf="post.mediaType==='video'" src="{{modalData.path}}" width="100%" height="60%" style="object-fit: contain; " controls ></video> -->
+  
+  
+		  <div class="post-body">
+			<p class="card-text"> {{modalData.post.caption}}
+			  <br>
+			  
+			  <span class="timeStamp">{{modalData.post.date | date:"medium" }} | {{modalData.user[0].username}}</span>
+  
+			</p>
+			<button class="btn" [disabled]="!currentUser" (click)="toggleLike(modalData)">
+			  <!-- <i class=" fa-heart {{post.post.isliked?'fa-solid':'fa-regular'}}"></i> -->
+			  <img class="img-fluid LikeImage" [src]="modalData.post.isliked?'/assets/heart-filled.png':'/assets/heart.png'" width="20" height="20"
+				alt="Like Button">
+  
+			  {{modalData.post.likes}}
+			</button>
+			<br>
+			<span class="auth" *ngIf="!currentUser">Please Authenticate To Like This Post!</span>
+		  </div>
+		</div>
+  
+	  </div>
+</ng-template>

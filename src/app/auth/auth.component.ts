@@ -5,6 +5,7 @@ import { Router } from '@angular/router'
 import { AuthService } from './auth.service'
 import { Subscription } from 'rxjs'
 import { Meta, Title } from '@angular/platform-browser'
+import { ToastService } from '../services/toast.service'
 
 @Injectable({
   providedIn: 'root'
@@ -18,11 +19,15 @@ export class AuthComponent implements OnDestroy {
   isLoginMode = true
   name = ''
   email = ''
+  reset = false
+  resetSent = false
+  res: string
   constructor (
     private auth: AuthService,
     private router: Router,
     private metaService: Meta,
-    private title: Title
+    private title: Title,
+    private toastService: ToastService
   ) {
     this.generatePageMeta()
   }
@@ -53,10 +58,13 @@ export class AuthComponent implements OnDestroy {
           })
         )
         .subscribe(
-          res => {},
+          res => {
+            this.toastService.show('Login Success! Welcome to MindShare.','bg-success')
+          },
           errorMessage => {
             this.error = true
             this.message = errorMessage
+            this.toastService.show(errorMessage,'bg-danger')
           }
         )
     } else {
@@ -68,24 +76,27 @@ export class AuthComponent implements OnDestroy {
           })
         )
         .subscribe(
-          res => {},
+          res => {
+            this.toastService.show('Sign Up Success! Welcome to MindShare.','bg-success')
+
+          },
           errorMessage => {
             this.error = true
             this.message = errorMessage
+            this.toastService.show(errorMessage,'bg-danger')
+            
           }
         )
     }
   }
-  reset = false
   toReset () {
     this.reset = !this.reset
   }
-  resetSent = false
-  res: string
+
   resetPassword (form: NgForm) {
     this.auth.resetPassword(form.value.email)
     this.resetSent = true
-    this.res = 'CHECK your email '
+	this.toastService.show('Mail Reset Link Sent!','bg-success')
   }
   ngOnDestroy (): void {
     this.unsubs.unsubscribe()

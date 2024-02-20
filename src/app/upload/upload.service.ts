@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core'
 import { AngularFirestore } from '@angular/fire/compat/firestore'
 import { AuthService } from '../auth/auth.service'
+import { ToastService } from '../services/toast.service'
 
 @Injectable({
   providedIn: 'root'
@@ -9,7 +10,7 @@ export class UploadService {
   user: string
   userName: string
 
-  constructor (private firestore: AngularFirestore, private auth: AuthService) {}
+  constructor (private firestore: AngularFirestore, private auth: AuthService, private toastService:ToastService) {}
 
   upload (caps: string, imgPath: string) {
     this.auth.user.subscribe(res => {
@@ -30,10 +31,11 @@ export class UploadService {
             likedBy: []
           })
           .then(() => {
-            // console.log('Document successfully written.');
+            this.toastService.show('Post Uploaded Successfully!','bg-success')
+            
           })
           .catch(error => {
-            // console.error('Error writing document: ', error);
+            this.toastService.show('Unable to Post! Please try again later.','bg-danger')
           })
       })
     })

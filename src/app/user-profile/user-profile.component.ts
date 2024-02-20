@@ -6,6 +6,7 @@ import { Subscription, finalize } from 'rxjs'
 import { AngularFireStorage } from '@angular/fire/compat/storage'
 import { PostsService } from '../home/posts.service'
 import { Meta, Title } from '@angular/platform-browser'
+import { ToastService } from '../services/toast.service'
 @Component({
   selector: 'app-user-profile',
   templateUrl: './user-profile.component.html',
@@ -30,7 +31,8 @@ export class UserProfileComponent implements OnInit {
     private storage: AngularFireStorage,
     private getUserPosts: PostsService,
     private metaService: Meta,
-    private titleService: Title
+    private titleService: Title,
+    private toastService:ToastService
   ) {}
   onLoad = false
   ngOnInit (): void {
@@ -108,6 +110,10 @@ export class UserProfileComponent implements OnInit {
           name: name,
           profilePic: this.profilePic,
           username: username
+        }).then(()=>{
+          this.toastService.show('Changes Saved!','bg-success')
+        }).catch(()=>{
+          this.toastService.show('Unable to Save chnages. Try again later!','bg-danger')
         })
       })
       this.unsub.unsubscribe()

@@ -6,6 +6,7 @@ import { UploadService } from './upload.service'
 import { Router } from '@angular/router'
 import { Subscription } from 'rxjs'
 import { Meta, Title } from '@angular/platform-browser'
+import { ToastService } from '../services/toast.service'
 
 @Component({
   selector: 'app-upload',
@@ -22,7 +23,8 @@ export class UploadComponent {
     private uploadServ: UploadService,
     private router: Router,
     private metaService: Meta,
-    private titleService: Title
+    private titleService: Title,
+	private toastService: ToastService
   ) {
 	this.generatePageMeta()
   }
@@ -89,4 +91,5 @@ export class UploadComponent {
     let description = 'Upload or Share something on MindShare'
     this.metaService.updateTag({ name: 'description', content: description })
   }
+
 }
