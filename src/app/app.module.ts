@@ -18,32 +18,36 @@ import { provideFirestore, getFirestore } from '@angular/fire/firestore'
 import { LoaderComponent } from './Funcs/loader/loader.component'
 
 import { OtherProfilesComponent } from './other-profiles/other-profiles.component'
-import { TitleCasePipe } from '@angular/common'
+import { TitleCasePipe } from '@angular/common';
+import { NgbdToastGlobal } from "./components/toast/toast.component";
+import { ToastsContainer } from "./components/toast-container";
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    HeaderComponentComponent,
-    HomeComponent,
-    UserProfileComponent,
-    UploadComponent,
-    AuthComponent,
-    LogoComponent,
-    LoaderComponent,
-    OtherProfilesComponent
-  ],
-  imports: [
-    HttpClientModule,
-    BrowserModule,
-    AngularFireModule,
-    AppRoutingModule,
-    FormsModule,
-    provideFirebaseApp(() => initializeApp(environment.firebase)),
-    provideAuth(() => getAuth()),
-    provideFirestore(() => getFirestore()),
-    AngularFireModule.initializeApp(environment.firebase),
-  ],
-  providers: [TitleCasePipe],
-  bootstrap: [AppComponent]
+    declarations: [
+        AppComponent,
+        HeaderComponentComponent,
+        HomeComponent,
+        UserProfileComponent,
+        UploadComponent,
+        AuthComponent,
+        LogoComponent,
+        LoaderComponent,
+        OtherProfilesComponent,
+    ],
+    providers: [TitleCasePipe],
+    bootstrap: [AppComponent],
+    imports: [
+        HttpClientModule,
+        BrowserModule,
+        AngularFireModule,
+        AppRoutingModule,
+        FormsModule,
+        provideFirebaseApp(() => initializeApp(environment.firebase)),
+        provideAuth(() => getAuth()),
+        provideFirestore(() => getFirestore()),
+        AngularFireModule.initializeApp(environment.firebase),
+        NgbdToastGlobal,
+        ToastsContainer
+    ]
 })
 export class AppModule {}

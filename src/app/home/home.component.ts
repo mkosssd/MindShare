@@ -3,7 +3,7 @@ import { Observable, Subscription } from 'rxjs'
 import { PostsService } from './posts.service'
 import { AuthService } from '../auth/auth.service'
 import { Meta, Title } from '@angular/platform-browser'
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap'
+import { NgbModal, NgbToast } from '@ng-bootstrap/ng-bootstrap'
 
 @Component({
   selector: 'app-home',
