@@ -3,6 +3,7 @@ import { Observable, Subscription } from 'rxjs'
 import { PostsService } from './posts.service'
 import { AuthService } from '../auth/auth.service'
 import { Meta, Title } from '@angular/platform-browser'
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap'
 
 @Component({
   selector: 'app-home',
@@ -17,7 +18,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   private sub: Subscription
   private sub2: Subscription
 
-  constructor (private posts: PostsService, private auth: AuthService, private metaService: Meta, private titleService: Title) {}
+  constructor (private posts: PostsService, private auth: AuthService, private metaService: Meta, private titleService: Title, private modalService: NgbModal) {}
   currentUser: any
   ngOnInit (): void {
     this.auth.user.subscribe(res => {
@@ -110,5 +111,11 @@ export class HomeComponent implements OnInit, OnDestroy {
       this.titleService.setTitle(title)
       let description = 'See Other Users Posts & Interact With Them | MindShare'
 			this.metaService.updateTag({ name: 'description', content: description });
+    }
+    modalData:any
+    openModal(postModal:any, arrayIndex){
+      this.modalData = this.posts_[arrayIndex]
+      this.modalService.open(postModal, {centered: true, size: 'md'})
+      
     }
   }
