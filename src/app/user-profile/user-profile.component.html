@@ -1,62 +1,65 @@
-<div class="text-center load justify-content-center" *ngIf="onLoad">
-    <app-loader></app-loader>
-</div>
-<div class="row" *ngIf="!onLoad">
-    <div class="col-md-6">
-        <div class="text-center">
+<div class="container">
+    <div class="text-center load justify-content-center" *ngIf="onLoad">
+        <app-loader></app-loader>
+    </div>
+    <div class="row" *ngIf="!onLoad">
+        <div class="col-md-6">
+            <div class="text-center">
 
-            <img [src]=profilePic alt="" *ngIf="!editMode"
-                style="border-radius: 50%; width:200px; height: 200px; object-fit:cover;">
-            <div *ngIf="editMode">
-                <input (click)="change()" type="image" [src]=profilePic
+                <img [src]=profilePic alt="" *ngIf="!editMode"
                     style="border-radius: 50%; width:200px; height: 200px; object-fit:cover;">
-                <br>
-                <button (click)="upload" (change)="upload" disabled
-                    style="background: transparent; border: none; font-size: 2vw;" type="button" class="btn"><i
-                        class="fa fa-upload"></i></button>
-                <input ngModel name="photo" type="file" id="upload" #upload style="display:none;"
-                    (change)="onFileSelected($event)" accept="image/*">
-            </div>
-            <div class=" col-xs-12 ">
-                <div class="bg-dark text-center border details" *ngIf="!editMode">
-                    <p>Name: {{name}}</p>
-                    <p>Username: {{username}}</p>
-                    <p>Email: {{email}}</p>
-                    <p>Bio: {{bio}}</p>
+                <div *ngIf="editMode">
+                    <input (click)="change()" type="image" [src]=profilePic
+                        style="border-radius: 50%; width:200px; height: 200px; object-fit:cover;">
+                    <br>
+                    <button (click)="upload" (change)="upload" disabled
+                        style="background: transparent; border: none; font-size: 2vw;" type="button" class="btn"><i
+                            class="fa fa-upload"></i></button>
+                    <input ngModel name="photo" type="file" id="upload" #upload style="display:none;"
+                        (change)="onFileSelected($event)" accept="image/*">
+                </div>
+                <div class=" col-xs-12 ">
+                    <div class="bg-dark text-center border details" *ngIf="!editMode">
+                        <p>Name: {{name}}</p>
+                        <p>Username: {{username}}</p>
+                        <p>Email: {{email}}</p>
+                        <p>Bio: {{bio}}</p>
+                    </div>
                 </div>
             </div>
+
+            <button type="button" class="btn btn-light btn-sm" *ngIf="!editMode" (click)="editModeFunc()">EDIT</button>
         </div>
-
-        <button type="button" class="btn btn-light btn-sm" *ngIf="!editMode" (click)="editModeFunc()">EDIT</button>
-    </div>
-    <div class="col-md-6" *ngIf="editMode">
-        <form #editUser="ngForm" (ngSubmit)="editServ(editUser)">
-            <div class="form-group">
-                <label for="NAME">NAME</label> <input name="name" type="text" class="form-control" [(ngModel)]="name">
-            </div>
-            <div class="form-group">
-                <label for="USERNAME">USERNAME<span>(usernames are not unique)</span></label> <input name="username"
-                    type="text" class="form-control" [(ngModel)]="username">
-            </div>
-            <div class="form-group">
-                <label for="EMAIL">EMAIL</label> <input name="email" type="text" class="form-control"
-                    [(ngModel)]="email" [disabled]=true>
-            </div>
+        <div class="col-md-6" *ngIf="editMode">
+            <form #editUser="ngForm" (ngSubmit)="editServ(editUser)">
+                <div class="form-group">
+                    <label for="NAME">NAME</label> <input name="name" type="text" class="form-control"
+                        [(ngModel)]="name">
+                </div>
+                <div class="form-group">
+                    <label for="USERNAME">USERNAME<span>(usernames are not unique)</span></label> <input name="username"
+                        type="text" class="form-control" [(ngModel)]="username">
+                </div>
+                <div class="form-group">
+                    <label for="EMAIL">EMAIL</label> <input name="email" type="text" class="form-control"
+                        [(ngModel)]="email" [disabled]=true>
+                </div>
 
 
-            <div class="form-group">
-                <label for="BIO">BIO <span>(max 75 chars)</span></label> <textarea name="bio" type="text" ngModel
-                    class="form-control" [(ngModel)]=bio maxlength="75"></textarea>
-            </div>
-            <button type="submit" class="btn btn-success" [disabled]="!editUser.valid">SAVE</button>
-        </form>
-    </div>
-    <div class="col-md-6" *ngIf="!editMode">
-        <a>
-            <li style="list-style-type: none; cursor: pointer; border: 1px solid white;" class="text-center"
-                routerLink="/user/{{email}}">
-                <h3>See your posts</h3>
-            </li>
-        </a>
+                <div class="form-group">
+                    <label for="BIO">BIO <span>(max 75 chars)</span></label> <textarea name="bio" type="text" ngModel
+                        class="form-control" [(ngModel)]=bio maxlength="75"></textarea>
+                </div>
+                <button type="submit" class="btn btn-success" [disabled]="!editUser.valid">SAVE</button>
+            </form>
+        </div>
+        <div class="col-md-6" *ngIf="!editMode">
+            <a>
+                <li style="list-style-type: none; cursor: pointer; border: 1px solid white;" class="text-center"
+                    routerLink="/user/{{email}}">
+                    <h3>See your posts</h3>
+                </li>
+            </a>
+        </div>
     </div>
 </div>
