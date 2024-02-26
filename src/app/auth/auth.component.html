@@ -1,37 +1,41 @@
-<ng-template appPlaceHolder></ng-template>
-<div class="row">
-	<div class="col-xs-8 col-md-6 col-md-offset-3">
+<div class="container">
+	<div class="row">
+		<div class="col-xs-8 col-md-6 col-md-offset-3">
 
-		<form #authForm="ngForm" (ngSubmit)="onSubmit(authForm)">
-			<div class="form-group mb-3" *ngIf="!isLoginMode && !reset">
-				<label class="small" for="username">NAME</label>
-				<input type="text" ngModel name="name" class="form-control" placeholder="NAME" required>
-			</div>
+			<form #authForm="ngForm" (ngSubmit)="onSubmit(authForm)">
+				<div class="form-group mb-3" *ngIf="!isLoginMode && !reset">
+					<label class="small" for="username">NAME</label>
+					<input type="text" ngModel name="name" class="form-control" placeholder="NAME" required>
+				</div>
 
-			<span class="error text-uppercase" *ngIf="error">{{message}}</span>
-			<span class="resets text-uppercase" *ngIf="resetSent">{{res}}</span>
-			<div class="form-group mb-3">
-				<label for="email" class="small">EMAIL</label>
-				<input type="email" ngModel name="email" class="form-control" placeholder="EMAIL" required email>
-			</div>
-			<div class="form-group mb-3" *ngIf="!reset">
-				<label class="small" for="password">PASSWORD</label>
-				<input type="password" ngModel name="password" class="form-control" placeholder="PASSWORD" required password minlength="6">
-			</div>
-			<div>
-				<button type="submit" class="btn btn-dark" [disabled]="!authForm.valid"
-					*ngIf="!reset">{{isLoginMode?'Login':'Sign Up'}}</button> <span class="divi"
-					*ngIf="!reset">|</span>&nbsp;
-				<button type="button" class="btn btn-dark" [disabled]="!authForm.valid"
-					(click)="resetPassword(authForm)" *ngIf="reset">Send Reset
-					Link</button>
-				<button type="button" class="btn btn-dark btn-sm" (click)="toReset()" *ngIf="!reset">Reset</button>
-				<label for="sign up" class="small" *ngIf="!reset">{{isLoginMode ?'New User?':'Returning User?'}}</label>
-				<button type="button" class="btn btn-dark" *ngIf="!reset" (click)="onSignup()">{{isLoginMode ?'SignUp':'Login'}}</button>
-			</div>
-		</form>
-	</div>
-	<div class="col-xs-4 col-md-6" style="height: 60vh; margin-top:20vh; align-content: center;">
-		<app-logo></app-logo>
+				<span class="error text-uppercase" *ngIf="error">{{message}}</span>
+				<span class="resets text-uppercase" *ngIf="resetSent">{{res}}</span>
+				<div class="form-group mb-3">
+					<label for="email" class="small">EMAIL</label>
+					<input type="email" ngModel name="email" class="form-control" placeholder="EMAIL" required email>
+				</div>
+				<div class="form-group mb-3" *ngIf="!reset">
+					<label class="small" for="password">PASSWORD</label>
+					<input type="password" ngModel name="password" class="form-control" placeholder="PASSWORD" required
+						password minlength="6">
+				</div>
+				<div>
+					<button type="submit" class="btn btn-dark" [disabled]="!authForm.valid"
+						*ngIf="!reset">{{isLoginMode?'Login':'Sign Up'}}</button> <span class="divi"
+						*ngIf="!reset">|</span>&nbsp;
+					<button type="button" class="btn btn-dark" [disabled]="!authForm.valid"
+						(click)="resetPassword(authForm)" *ngIf="reset">Send Reset
+						Link</button>
+					<button type="button" class="btn btn-dark btn-sm" (click)="toReset()" *ngIf="!reset">Reset</button>
+					<label for="sign up" class="small" *ngIf="!reset">{{isLoginMode ?'New User?':'Returning
+						User?'}}</label>
+					<button type="button" class="btn btn-dark" *ngIf="!reset" (click)="onSignup()">{{isLoginMode
+						?'SignUp':'Login'}}</button>
+				</div>
+			</form>
+		</div>
+		<div class="col-xs-4 col-md-6" style="height: 60vh; margin-top:20vh; align-content: center;">
+			<app-logo></app-logo>
+		</div>
 	</div>
 </div>

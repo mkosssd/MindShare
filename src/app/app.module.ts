@@ -18,41 +18,43 @@ import { provideFirestore, getFirestore } from '@angular/fire/firestore'
 import { LoaderComponent } from './Funcs/loader/loader.component'
 
 import { OtherProfilesComponent } from './other-profiles/other-profiles.component'
-import { TitleCasePipe } from '@angular/common';
-import { NgbdToastGlobal } from "./components/toast/toast.component";
-import { ToastsContainer } from "./components/toast-container";
+import { TitleCasePipe } from '@angular/common'
+import { NgbdToastGlobal } from './components/toast/toast.component'
+import { ToastsContainer } from './components/toast-container'
 import { AngularCropperjsModule } from 'angular-cropperjs'
 import { SuperImageCropper } from 'super-image-cropper'
-import { AngularCropperComponent } from './angular-cropper/angular-cropper.component'
+import { AngularCropperComponent } from './angular-cropper copy/angular-cropper.component'
+import { NgbTooltipModule } from '@ng-bootstrap/ng-bootstrap'
 
 @NgModule({
-    declarations: [
-        AppComponent,
-        HeaderComponentComponent,
-        HomeComponent,
-        UserProfileComponent,
-        UploadComponent,
-        AuthComponent,
-        LogoComponent,
-        LoaderComponent,
-        OtherProfilesComponent,
-        AngularCropperComponent
-    ],
-    providers: [TitleCasePipe],
-    bootstrap: [AppComponent],
-    imports: [
-        HttpClientModule,
-        BrowserModule,
-        AngularFireModule,
-        AppRoutingModule,
-        FormsModule,
-        provideFirebaseApp(() => initializeApp(environment.firebase)),
-        provideAuth(() => getAuth()),
-        provideFirestore(() => getFirestore()),
-        AngularFireModule.initializeApp(environment.firebase),
-        NgbdToastGlobal,
-        ToastsContainer,
-        AngularCropperjsModule,
-    ]
+  declarations: [
+    AppComponent,
+    HeaderComponentComponent,
+    HomeComponent,
+    UserProfileComponent,
+    UploadComponent,
+    AuthComponent,
+    LogoComponent,
+    LoaderComponent,
+    OtherProfilesComponent,
+    AngularCropperComponent
+  ],
+  providers: [TitleCasePipe],
+  bootstrap: [AppComponent],
+  imports: [
+    HttpClientModule,
+    BrowserModule,
+    AngularFireModule,
+    AppRoutingModule,
+    FormsModule,
+    provideFirebaseApp(() => initializeApp(environment.firebase)),
+    provideAuth(() => getAuth()),
+    provideFirestore(() => getFirestore()),
+    AngularFireModule.initializeApp(environment.firebase),
+    NgbdToastGlobal,
+    ToastsContainer,
+    AngularCropperjsModule,
+    NgbTooltipModule
+  ]
 })
 export class AppModule {}

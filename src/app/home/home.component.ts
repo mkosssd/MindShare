@@ -18,7 +18,13 @@ export class HomeComponent implements OnInit, OnDestroy {
   private sub: Subscription
   private sub2: Subscription
 
-  constructor (private posts: PostsService, private auth: AuthService, private metaService: Meta, private titleService: Title, private modalService: NgbModal) {}
+  constructor (
+    private posts: PostsService,
+    private auth: AuthService,
+    private metaService: Meta,
+    private titleService: Title,
+    private modalService: NgbModal
+  ) {}
   currentUser: any
   ngOnInit (): void {
     this.auth.user.subscribe(res => {
@@ -29,6 +35,11 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.sub2 = this.posts$.subscribe(
       res => {
         this.onLoad = false
+        this.metaService.updateTag({
+          name: 'robots',
+          content: 'index, follow, noodp'
+        })
+
         res.forEach(liked => {
           if (
             Array.isArray(liked.likedBy) &&
@@ -39,12 +50,14 @@ export class HomeComponent implements OnInit, OnDestroy {
             liked.isliked = false
           }
         }, this.processPosts(res))
-		this.sub2.unsubscribe()
-    this.generatePageMeta()
+        this.sub2.unsubscribe()
+        this.generatePageMeta()
       },
       error => {
         console.error(error)
-		this.sub2.unsubscribe()
+        this.metaService.updateTag({ name: 'robots', content: 'noindex, nofollow' })
+
+        this.sub2.unsubscribe()
       }
     )
   }
@@ -95,27 +108,26 @@ export class HomeComponent implements OnInit, OnDestroy {
         'remove'
       )
     }
-  
   }
   // commentButton=false
-    // toggleComment(post){
-    //   post.commentButton=!post.commentButton
-    // }
+  // toggleComment(post){
+  //   post.commentButton=!post.commentButton
+  // }
 
-    // forComment(comment,post,postId){
-    //   this.posts.comment(comment.value.comment,post.post.comments,postId,this.currentUser)
-      
-    // }
-    private generatePageMeta(){
-      let title = 'Home | MindShare'
-      this.titleService.setTitle(title)
-      let description = 'See Other Users Posts & Interact With Them | MindShare'
-			this.metaService.updateTag({ name: 'description', content: description });
-    }
-    modalData:any
-    openModal(postModal:any, arrayIndex){
-      this.modalData = this.posts_[arrayIndex]
-      this.modalService.open(postModal, {centered: true, size: 'md'})
-      
-    }
+  // forComment(comment,post,postId){
+  //   this.posts.comment(comment.value.comment,post.post.comments,postId,this.currentUser)
+
+  // }
+  private generatePageMeta () {
+    let title = 'Home | MindShare'
+    this.titleService.setTitle(title)
+    let description =
+      'Welcome to MindShare, where connections thrive! Discover engaging posts, explore diverse profiles, authenticate and like posts. Join our vibrant community today! | MindShare'
+    this.metaService.updateTag({ name: 'description', content: description })
   }
+  modalData: any
+  openModal (postModal: any, arrayIndex: any) {
+    this.modalData = this.posts_[arrayIndex]
+    this.modalService.open(postModal, { centered: true, size: 'md' })
+  }
+}
