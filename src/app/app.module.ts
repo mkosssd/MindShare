@@ -21,6 +21,9 @@ import { OtherProfilesComponent } from './other-profiles/other-profiles.componen
 import { TitleCasePipe } from '@angular/common';
 import { NgbdToastGlobal } from "./components/toast/toast.component";
 import { ToastsContainer } from "./components/toast-container";
+import { AngularCropperjsModule } from 'angular-cropperjs'
+import { SuperImageCropper } from 'super-image-cropper'
+import { AngularCropperComponent } from './angular-cropper/angular-cropper.component'
 
 @NgModule({
     declarations: [
@@ -33,6 +36,7 @@ import { ToastsContainer } from "./components/toast-container";
         LogoComponent,
         LoaderComponent,
         OtherProfilesComponent,
+        AngularCropperComponent
     ],
     providers: [TitleCasePipe],
     bootstrap: [AppComponent],
@@ -47,7 +51,8 @@ import { ToastsContainer } from "./components/toast-container";
         provideFirestore(() => getFirestore()),
         AngularFireModule.initializeApp(environment.firebase),
         NgbdToastGlobal,
-        ToastsContainer
+        ToastsContainer,
+        AngularCropperjsModule,
     ]
 })
 export class AppModule {}

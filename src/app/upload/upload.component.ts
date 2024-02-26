@@ -1,4 +1,4 @@
-import { Component } from '@angular/core'
+import { Component, ViewChild } from '@angular/core'
 import { NgForm } from '@angular/forms'
 import { AngularFireStorage } from '@angular/fire/compat/storage'
 import { finalize } from 'rxjs/operators'
@@ -7,6 +7,7 @@ import { Router } from '@angular/router'
 import { Subscription } from 'rxjs'
 import { Meta, Title } from '@angular/platform-browser'
 import { ToastService } from '../services/toast.service'
+import { CropperComponent } from 'angular-cropperjs'
 
 @Component({
   selector: 'app-upload',
@@ -17,60 +18,38 @@ export class UploadComponent {
   onLoad: boolean = false
   selectedFile: File | null = null
   subs: Subscription
-
+  @ViewChild('angularCropper') public angularCropper: CropperComponent
   constructor (
     private storage: AngularFireStorage,
     private uploadServ: UploadService,
     private router: Router,
     private metaService: Meta,
     private titleService: Title,
-	private toastService: ToastService
+    private toastService: ToastService
   ) {
-	this.generatePageMeta()
+    this.generatePageMeta()
   }
 
   serveredImg = true
   imgs = ''
+  targetUrl = ''
+  base64: any
+  targetImg = ''
 
-  onFileSelected (event: any) {
-    this.selectedFile = event.target.files[0]
-    if (this.selectedFile) {
-      this.picUpload()
-    }
-  }
 
   uploaded = true
-
+  angularCropperHandler (event: Event) {
+    this.base64 = event
+  }
   onUpload (form: NgForm) {
     const caps = form.value.caption
 
-    if (this.selectedFile) {
-      this.onLoad = true
-      this.uploadServ.upload(caps, this.imgs)
+    this.onLoad = true
+    if (this.base64) {
+      this.uploadServ.upload(caps, this.base64)
       this.reset(form)
       this.onLoad = false
     }
-  }
-
-  picUpload () {
-    this.uploaded = false
-    this.onLoad = true
-    this.serveredImg = false
-    const filePath = `images/${this.selectedFile.name}`
-    const fileRef = this.storage.ref(filePath)
-    const uploadTask = this.storage.upload(filePath, this.selectedFile)
-
-    this.subs = uploadTask
-      .snapshotChanges()
-      .pipe(
-        finalize(() => {
-          fileRef.getDownloadURL().subscribe((url: string) => {
-            this.imgs = url
-            this.onLoad = false
-          })
-        })
-      )
-      .subscribe()
   }
 
   reset (form: NgForm) {
@@ -91,5 +70,4 @@ export class UploadComponent {
     let description = 'Upload or Share something on MindShare'
     this.metaService.updateTag({ name: 'description', content: description })
   }
-
 }
