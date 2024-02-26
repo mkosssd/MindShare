@@ -23,7 +23,7 @@ import { NgbdToastGlobal } from './components/toast/toast.component'
 import { ToastsContainer } from './components/toast-container'
 import { AngularCropperjsModule } from 'angular-cropperjs'
 import { SuperImageCropper } from 'super-image-cropper'
-import { AngularCropperComponent } from './angular-cropper copy/angular-cropper.component'
+import { AngularCropperComponent } from './angular-cropper/angular-cropper.component'
 import { NgbTooltipModule } from '@ng-bootstrap/ng-bootstrap'
 
 @NgModule({
