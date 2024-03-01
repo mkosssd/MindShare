@@ -10,7 +10,7 @@ import { UserProfileComponent } from './user-profile/user-profile.component'
 import { UploadComponent } from './upload/upload.component'
 import { AuthComponent } from './auth/auth.component'
 import { LogoComponent } from './Funcs/logo/logo.component'
-import { HttpClientModule } from '@angular/common/http'
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http'
 import { initializeApp, provideFirebaseApp } from '@angular/fire/app'
 import { environment } from '../environments/environment'
 import { provideAuth, getAuth } from '@angular/fire/auth'
@@ -25,6 +25,7 @@ import { AngularCropperjsModule } from 'angular-cropperjs'
 import { SuperImageCropper } from 'super-image-cropper'
 import { AngularCropperComponent } from './angular-cropper/angular-cropper.component'
 import { NgbTooltipModule } from '@ng-bootstrap/ng-bootstrap'
+import { AuthInterceptor } from './auth/auth.interceptor'
 
 @NgModule({
   declarations: [
@@ -39,7 +40,10 @@ import { NgbTooltipModule } from '@ng-bootstrap/ng-bootstrap'
     OtherProfilesComponent,
     AngularCropperComponent
   ],
-  providers: [TitleCasePipe],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: false },
+    TitleCasePipe
+  ],
   bootstrap: [AppComponent],
   imports: [
     HttpClientModule,
