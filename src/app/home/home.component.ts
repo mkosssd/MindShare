@@ -119,10 +119,10 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   // }
   private generatePageMeta () {
-    let title = 'Home | MindShare'
+    let title = 'MindShare: Discover posts & share stuff with everybody'
     this.titleService.setTitle(title)
     let description =
-      'Welcome to MindShare, where connections thrive! Discover engaging posts, explore diverse profiles, authenticate and like posts. Join our vibrant community today! | MindShare'
+      'Welcome to MindShare, where connections thrive! Discover engaging posts, explore diverse profiles. Join our vibrant community today! | MindShare'
     this.metaService.updateTag({ name: 'description', content: description })
   }
   modalData: any
