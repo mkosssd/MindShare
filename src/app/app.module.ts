@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core'
-import { BrowserModule } from '@angular/platform-browser'
+import { BrowserModule, provideClientHydration } from '@angular/platform-browser'
 import { FormsModule } from '@angular/forms'
 import { AngularFireModule } from '@angular/fire/compat'
 import { AppRoutingModule } from './app-routing.module'
@@ -42,7 +42,8 @@ import { AuthInterceptor } from './auth/auth.interceptor'
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: false },
-    TitleCasePipe
+    TitleCasePipe,
+    provideClientHydration()
   ],
   bootstrap: [AppComponent],
   imports: [
