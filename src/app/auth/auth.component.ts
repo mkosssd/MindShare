@@ -99,7 +99,9 @@ export class AuthComponent implements OnDestroy {
 	this.toastService.show('Mail Reset Link Sent!','bg-success')
   }
   ngOnDestroy (): void {
-    this.unsubs.unsubscribe()
+    if(this.unsubs){
+      this.unsubs.unsubscribe()
+    }
   }
   private generatePageMeta () {
     let title = 'Log in or Sign up | MindShare'

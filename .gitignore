@@ -47,3 +47,5 @@ Thumbs.db
 *-debug.log
 .runtimeconfig.json
 /dist
+# Local Netlify folder
+.netlify

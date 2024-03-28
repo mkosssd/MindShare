@@ -57,7 +57,9 @@ export class OtherProfilesComponent implements OnInit, OnDestroy {
   
   }
   ngOnDestroy (): void {
-    this.subs.unsubscribe()
+    if(this.subs){
+      this.subs.unsubscribe()
+    }
   }
   private generatePageMeta(){
     let title = `${this.titleCase.transform(this.name)}'s Posts | MindShare`

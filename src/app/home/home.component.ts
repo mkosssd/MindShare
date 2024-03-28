@@ -50,14 +50,17 @@ export class HomeComponent implements OnInit, OnDestroy {
             liked.isliked = false
           }
         }, this.processPosts(res))
-        this.sub2.unsubscribe()
+        if(this.sub2){
+          this.sub2.unsubscribe()
+        }
         this.generatePageMeta()
       },
       error => {
         console.error(error)
         this.metaService.updateTag({ name: 'robots', content: 'noindex, nofollow' })
-
-        this.sub2.unsubscribe()
+        if(this.sub2){
+          this.sub2.unsubscribe()
+        }
       }
     )
   }

@@ -116,7 +116,10 @@ export class UserProfileComponent implements OnInit {
           this.toastService.show('Unable to Save chnages. Try again later!','bg-danger')
         })
       })
-      this.unsub.unsubscribe()
+      if(this.unsub){
+
+        this.unsub.unsubscribe()
+      }
     })
     this.editModeFunc()
   }

@@ -61,7 +61,9 @@ export class PostsService implements OnInit {
             likedBy: arrayRemove(curUser)
           })
         }
-        this.unsub.unsubscribe()
+        if(this.unsub){
+          this.unsub.unsubscribe()
+        }
       })
     })
   }
