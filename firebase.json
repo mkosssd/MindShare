@@ -11,9 +11,33 @@
       "**/node_modules/**"
     ],
     "frameworksBackend": {
-      "region": "asia-east1"
+      "region": "us-central1"
     }
   },
+  "functions": [
+    {
+      "source": "functions",
+      "predeploy": [
+        "npm run lint --prefix mindshare"
+      ],
+      "runtime": "nodejs14",
+      "region": "us-central1",
+      "codebase": "default"
+    },
+    {
+      "source": "mindshare",
+      "codebase": "mindshare",
+      "ignore": [
+        "node_modules",
+        ".git",
+        "firebase-debug.log",
+        "firebase-debug.*.log"
+      ],
+      "predeploy": [
+        "npm --prefix \"$RESOURCE_DIR\" run lint"
+      ]
+    }
+  ],
   "storage": {
     "rules": "storage.rules"
   }
