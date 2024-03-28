@@ -113,7 +113,12 @@
           "options": {
             "outputPath": "dist/MindShare/server",
             "main": "server.ts",
-            "tsConfig": "tsconfig.server.json"
+            "tsConfig": "tsconfig.server.json",
+            "stylePreprocessorOptions": {
+							"includePaths": [
+							  "./src/"
+							]
+						  }
           },
           "configurations": {
             "production": {
@@ -136,7 +141,7 @@
           "defaultConfiguration": "production"
         },
         "serve-ssr": {
-          "builder": "@angular-devkit/build-angular:ssr-dev-server",
+          "builder": "@nguniversal/builders:ssr-dev-server",
           "configurations": {
             "development": {
               "browserTarget": "MindShare:build:development",
@@ -150,7 +155,7 @@
           "defaultConfiguration": "development"
         },
         "prerender": {
-          "builder": "@angular-devkit/build-angular:prerender",
+          "builder": "@nguniversal/builders:prerender",
           "options": {
             "routes": [
               "/"
