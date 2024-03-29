@@ -64,11 +64,11 @@ export class AppComponent implements OnInit {
       // add site meta for image
 	  this.meta.updateTag({ property: 'og:site_name', content: 'mindshare.social' });
 	  this.meta.updateTag({ property: 'og:type', content: 'website' });
-	  this.meta.updateTag({ property: 'og:image', content: `../assets/Screenshot_2023-06-17_183301-removebg-preview.png` });
+	  this.meta.updateTag({ property: 'og:image', content: `https://firebasestorage.googleapis.com/v0/b/mindshare-3ab39.appspot.com/o/MindShare-logo.webp?alt=media&token=e090bf8e-5fe7-42cf-8eba-711ac15bbc75` });
 
 	  this.meta.updateTag({ property: 'twitter:site', content: '@Mindshare_IND' });
 	  this.meta.updateTag({ property: 'twitter:card', content: 'summary_large_image' });
-	  this.meta.updateTag({ property: 'twitter:image', content: '../assets/Screenshot_2023-06-17_183301-removebg-preview.png' });
+	  this.meta.updateTag({ property: 'twitter:image', content: 'https://firebasestorage.googleapis.com/v0/b/mindshare-3ab39.appspot.com/o/MindShare-logo.webp?alt=media&token=e090bf8e-5fe7-42cf-8eba-711ac15bbc75' });
   }
   
 }
