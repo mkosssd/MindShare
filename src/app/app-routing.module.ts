@@ -6,6 +6,7 @@ import { AuthComponent } from './auth/auth.component'
 import { AuthGuard } from './auth/auth.guard'
 import { UserProfileComponent } from './user-profile/user-profile.component'
 import { OtherProfilesComponent } from './other-profiles/other-profiles.component'
+import { AboutUsComponent } from './about-us/about-us.component'
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -21,7 +22,8 @@ const routes: Routes = [
     path: 'user/:email',
     component: OtherProfilesComponent,
     canActivate: [AuthGuard]
-  }
+  },
+  {path:'about-us',component: AboutUsComponent}
 ]
 
 @NgModule({

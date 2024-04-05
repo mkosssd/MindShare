@@ -26,6 +26,7 @@ import { SuperImageCropper } from 'super-image-cropper'
 import { AngularCropperComponent } from './angular-cropper/angular-cropper.component'
 import { NgbTooltipModule } from '@ng-bootstrap/ng-bootstrap'
 import { AuthInterceptor } from './auth/auth.interceptor'
+import { FooterComponent } from './footer/footer.component'
 
 @NgModule({
   declarations: [
@@ -38,10 +39,10 @@ import { AuthInterceptor } from './auth/auth.interceptor'
     LogoComponent,
     LoaderComponent,
     OtherProfilesComponent,
-    AngularCropperComponent
+    AngularCropperComponent,
   ],
   providers: [
-    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: false },
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
     TitleCasePipe,
     provideClientHydration()
   ],
@@ -59,7 +60,8 @@ import { AuthInterceptor } from './auth/auth.interceptor'
     NgbdToastGlobal,
     ToastsContainer,
     AngularCropperjsModule,
-    NgbTooltipModule
+    NgbTooltipModule,
+    FooterComponent
   ]
 })
 export class AppModule {}

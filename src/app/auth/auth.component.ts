@@ -1,4 +1,4 @@
-import { Component, Injectable, OnDestroy } from '@angular/core'
+import { Component, Injectable, OnDestroy, OnInit } from '@angular/core'
 import { NgForm } from '@angular/forms'
 import { tap } from 'rxjs/operators'
 import { Router } from '@angular/router'
@@ -15,7 +15,7 @@ import { ToastService } from '../services/toast.service'
   templateUrl: './auth.component.html',
   styleUrls: ['./auth.component.css']
 })
-export class AuthComponent implements OnDestroy {
+export class AuthComponent implements OnDestroy, OnInit {
   isLoginMode = true
   name = ''
   email = ''
@@ -31,7 +31,9 @@ export class AuthComponent implements OnDestroy {
   ) {
     this.generatePageMeta()
   }
-
+  ngOnInit(): void {
+    this.metaService.updateTag({name: 'robots', content: 'noindex, nofollow'});
+  }
   onSignup () {
     this.isLoginMode = !this.isLoginMode
 	this.generatePageMeta()

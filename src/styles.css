@@ -28,3 +28,7 @@
   ::-webkit-scrollbar-thumb:hover {
     background: #a8a7a7;
   }
+
+  .c-pointer {
+    cursor: pointer;
+  }

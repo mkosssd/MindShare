@@ -1,0 +1,7 @@
+Sitemap: https://mind-share.netlify.com/sitemap
+
+User-agent: *
+Disallow: /auth   
+Disallow: /upload 
+Disallow: /profile
+Disallow: /user 

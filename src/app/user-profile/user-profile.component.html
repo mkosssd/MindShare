@@ -6,7 +6,7 @@
         <div class="col-md-6">
             <div class="text-center">
 
-                <img [src]=profilePic alt="" *ngIf="!editMode"
+                <img [src]=profilePic alt="User Profile" class="my-3" *ngIf="!editMode"
                     style="border-radius: 50%; width:200px; height: 200px; object-fit:cover;">
                 <div *ngIf="editMode">
                     <input (click)="change()" type="image" [src]=profilePic
@@ -27,8 +27,10 @@
                     </div>
                 </div>
             </div>
-
-            <button type="button" class="btn btn-light btn-sm" *ngIf="!editMode" (click)="editModeFunc()">EDIT</button>
+            <div class="text-center">
+                <button type="button" class="btn btn-light btn-sm" *ngIf="!editMode" (click)="editModeFunc()">EDIT</button>
+                <button type="submit"  *ngIf="!editMode" class="btn btn-light btn-sm" routerLink="/user/{{email}}">YOUR POSTS</button>
+            </div>
         </div>
         <div class="col-md-6" *ngIf="editMode">
             <form #editUser="ngForm" (ngSubmit)="editServ(editUser)">
@@ -52,14 +54,6 @@
                 </div>
                 <button type="submit" class="btn btn-success" [disabled]="!editUser.valid">SAVE</button>
             </form>
-        </div>
-        <div class="col-md-6" *ngIf="!editMode">
-            <a>
-                <li style="list-style-type: none; cursor: pointer; border: 1px solid white;" class="text-center"
-                    routerLink="/user/{{email}}">
-                    <h3>See your posts</h3>
-                </li>
-            </a>
         </div>
     </div>
 </div>

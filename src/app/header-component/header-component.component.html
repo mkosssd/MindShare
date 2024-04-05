@@ -1,6 +1,6 @@
 <header class="header">
   <nav class="navbar fixed-top navbar-expand-lg">
-    <div class="container-fluid">
+    <div class="container">
       <a class="navbar-brand" routerLink="/"><img src="https://firebasestorage.googleapis.com/v0/b/mindshare-3ab39.appspot.com/o/MindShare-logo.webp?alt=media&token=e090bf8e-5fe7-42cf-8eba-711ac15bbc75"
           style="width: 70px;" alt="MindShare">
           <span class="visually-hidden opacity-0">MindShare</span>
@@ -12,7 +12,7 @@
 
       </button>
 
-    </div>
+
     <div class="collapse  navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav coll">
         <li class="nav-item">
@@ -24,6 +24,9 @@
         </li>
         <li *ngIf="!isAuth" class="nav-item rounded" routerLinkActive="active">
           <a routerLink="/auth" class="nav-link navbarLinks px-4 fw-bolder">Login/Sign Up</a>
+        </li>
+        <li class="nav-item rounded" routerLinkActive="active">
+          <a routerLink="/about-us" class="nav-link navbarLinks px-4 fw-bolder">About Us</a>
         </li>
         <button *ngIf="isAuth" class="btn text-white fw-bolder p-0 px-4" (click)="logout()">
           Logout
@@ -37,5 +40,6 @@
       </ul>
 
     </div>
+  </div>
   </nav>
 </header>
