@@ -1,4 +1,4 @@
-Sitemap: https://mind-share.netlify.com/sitemap
+Sitemap: https://mind-share.netlify.app/sitemap.xml
 
 User-agent: *
 Disallow: /auth   

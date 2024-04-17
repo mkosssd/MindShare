@@ -32,6 +32,7 @@
     "cloudinary-core": "^2.13.0",
     "express": "^4.18.2",
     "firebase": "^9.23.0",
+    "next-sitemap": "^4.2.3",
     "ngx-photo-editor": "^0.4.4",
     "rxjs": "~7.8.0",
     "super-image-cropper": "^1.0.18",
