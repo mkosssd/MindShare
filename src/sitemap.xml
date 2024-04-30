@@ -3,21 +3,21 @@
 
   <!-- Home Page -->
   <url>
-    <loc>https://yourwebsite.com/home</loc>
+    <loc>https://mind-share.netlify.app/home</loc>
     <priority>1.0</priority>
     <changefreq>daily</changefreq>
   </url>
 
   <!-- Upload Page -->
   <url>
-    <loc>https://yourwebsite.com/upload</loc>
+    <loc>https://mind-share.netlify.app/upload</loc>
     <priority>0.8</priority>
     <changefreq>weekly</changefreq>
   </url>
 
   <!-- User Profile Page -->
   <url>
-    <loc>https://yourwebsite.com/profile</loc>
+    <loc>https://mind-share.netlify.app/profile</loc>
     <priority>0.9</priority>
     <changefreq>weekly</changefreq>
   </url>
@@ -25,7 +25,7 @@
 
   <!-- User Profile (Other Profiles) Page -->
   <url>
-    <loc>https://yourwebsite.com/user/</loc>
+    <loc>https://mind-share.netlify.app/user/</loc>
     <priority>0.8</priority>
     <changefreq>monthly</changefreq>
   </url>
